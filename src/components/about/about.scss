@@ -1,0 +1,69 @@
+#about-section {
+  display: block;
+  text-align: center;
+}
+
+.aboutContainer {
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 5px 5px 5px #AAA;
+  padding: 5%;
+}
+
+.about-name-left {
+  margin-left: 16%;
+}
+
+.about-name-right {
+  margin-left: 64%;
+}
+
+.about-event-img {
+  width: 100%;
+  text-align: center;
+}
+
+.about-row {
+  margin-bottom: 5%;
+}
+
+.matthew-image {
+  margin-top: 60px;
+  height: 400px;
+  width: 400px;
+  background-image: url(/public/assets/matthew.jpg);
+  border-radius: 200px;
+  background-size: cover;
+}
+
+
+.brennan-image {
+  margin-top: 30px;
+  height: 400px;
+  width: 400px;
+  background-image: url(/public/assets/brennan.jpg);
+  border-radius: 200px;
+  background-size: cover;
+}
+
+.sihem-image {
+  height: 400px;
+  width: 400px;
+  background-image: url(/public/assets/sihem.jpg);
+  border-radius: 200px;
+  background-size: cover;
+}
+
+
+.james-image {
+  margin-top: 30px;
+  height: 400px;
+  width: 400px;
+  background-image: url(/public/assets/james.jpg);
+  border-radius: 200px;
+  background-size: cover;
+}
+
