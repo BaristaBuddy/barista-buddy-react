@@ -11,9 +11,9 @@ import Footer from './components/footer';
 function App() {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <main>
-        <Switch>
+        {/* <Switch>
           <Route exact path="/">
             <Stores />
           </Route>
@@ -22,13 +22,13 @@ function App() {
           </Route>
           <Route path="/register">
             <RegistrationForm />
-            <Route path="/about">
-              <About />
-            </Route>
+          </Route> */}
+          <Route path="/about">
+            <About />
           </Route>
-        </Switch>
+        {/* </Switch> */}
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
