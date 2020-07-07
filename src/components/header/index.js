@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from "../auth/login";
-
 import '../../index.scss';
 import bbBrownMobile from '../../assets/bb-brown-mobile.png';
 

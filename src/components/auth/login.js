@@ -17,13 +17,13 @@ const Login = () => {
         logout();
     }
 
-    //console.log(user);
+    console.log(user);
 
     
     if (user) {
         return (
             <div className="login">
-                {/* <h3>Welcome back, {user.username}!</h3> */}
+                <h3>Welcome back, {user.username.split(" ")[0]}!</h3>
                 <form onSubmit={logoutSubmit}>
                     <button>Log Out</button>
                 </form>

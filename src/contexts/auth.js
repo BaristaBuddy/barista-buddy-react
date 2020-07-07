@@ -23,7 +23,7 @@ export class AuthProvider extends React.Component {
             logout: this.logout,
         };
     }
-//        const result = await fetch(`${usersAPI}/login`, {
+
 
     login = async (username, password) => {
         const result = await fetch(`${usersAPI}/login`, {
@@ -56,13 +56,16 @@ export class AuthProvider extends React.Component {
         try {
             const payload = jwt.decode(token);
             if (payload) {
+                console.log(payload.FullName);
                 if (!user) {
                     user = {
-                        id: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
-            username: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
+                        //id: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
+                        id: payload.sub,
+            //username: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
+            username: payload.FullName
                     };
                 }
-
+                console.log(user);
                 this.setState({
                     user,
                     permissions: payload.permissions || [],
