@@ -2,79 +2,67 @@ class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstname: '',
-      lastname: '',
-      username: '',
-      password:'',
-      age: null,
-      phonenumber: null,
-      birthday:'',
+      firstName: '',
+      lastName: '',
+      password: '',
+      phoneNumber: '',
+      email: '',
+      birthdate: new Date(1970, 0, 1, 9, 30),
     };
   }
-  SubmitHandler = (event) => {
+  submitHandler = (event) => {
     event.preventDefault();
-    let age = this.state.age;
-    if (!Number(age)) {
-      alert("Your age must be a number");
-    }
   }
-  ChangeHandler = (event) => {
+  
+  changeHandler = (event) => {
     let nam = event.target.name;
     let val = event.target.value;
     this.setState({[nam]: val});
   }
   render() {
     return (
-      <form onSubmit={this.SubmitHandler}>
-      <h1>Sign-up for BaristaBuddy!</h1>
-      <p>Enter your First name:</p>
+      <form onSubmit={this.submitHandler}>
+      <h1>Sign up for Barista Buddy!</h1>
+      <p>First name:</p>
       <input
         type='text'
-        name='firstname'
-        onChange={this.ChangeHandler}
+        name='firstName'
+        onChange={this.changeHandler}
       />
-       <p>Enter Last name:</p>
+       <p>Last name:</p>
       <input
         type='text'
-        name='lastname'
-        onChange={this.ChangeHandler}
-      />
-       <p>Enter your Username:</p>
-      <input
-        type='text'
-        name='username'
-        onChange={this.ChangeHandler}
+        name='lastName'
+        onChange={this.changeHandler}
       />
        <p>Enter your password:</p>
       <input
-        type='text'
+        type='password'
         name='password'
-        onChange={this.ChangeHandler}
+        onChange={this.changeHandler}
       />
-      <p>Enter your age:</p>
+      <p>Phone Number:</p>
       <input
         type='text'
-        name='age'
-        onChange={this.ChangeHandler}
+        name='phoneNumber'
+        onChange={this.changeHandler}
       />
-      <p>Enter your Phone Number:</p>
+      <p>Email:</p>
       <input
-        type='text'
-        name='phonenumber'
-        onChange={this.ChangeHandler}
+        type='email'
+        name='email'
+        onChange={this.changeHandler}
       />
-       <p>Enter your Birthday:</p>
+       <p>Birthdate:</p>
       <input
-        type='text'
-        name='birthday'
-        onChange={this.ChangeHandler}
+        type='date'
+        name='birthDate'
+        onChange={this.changeHandler}
       />
-      <br/>
-      <br/>
-      <input type='submit' />
+      <button type='submit'>
+      Register!
+      </button>
       </form>
     );
   }
 }
-
-ReactDOM.render(<SignUpForm />, document.getElementById('root'));
