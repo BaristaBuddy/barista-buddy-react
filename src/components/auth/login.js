@@ -1,24 +1,24 @@
 import React from 'react';
-import useAuth from './../../contexts/auth';
+import useAuth from '../../contexts/auth';
 
 const Login = () => {
 
-    const auth = useAuth();
+    const { user} = useAuth();
     const handleSubmit = e => {
         e.preventDefault();
 
-        const { username, password } = e.target.elements;
+       // const { username, password } = e.target.elements;
 
-        auth.login(username.value, password.value);
+        //login(username.value, password.value);
     }
 
     const logoutSubmit = e => {
         e.preventDefault();
-        auth.logout();
+        //logout();
     }
 
     //const user = auth.user;
-    console.log(auth);
+    console.log(user);
 
     //switch back to user
     if (false) {
