@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react'; 
 import Modal from './../modal';
 import { If } from './../if/if.js';
 import SignUpForm from './../form';
@@ -8,11 +8,11 @@ import bbBrown from './../../assets/barista-buddy-brown.png';
 
 export default function LandingPage() {
 
-  const toggleModal = () => {
-    this.setState(oldState => ({ showModal: !oldState.showModal }));
-  }
+  const [toggle, setToggle] = useState(false);
 
-  const { showModal } = this.state;
+  const toggleModal = () => {
+    setToggle(!toggle);
+  }
 
   return (
     <>
@@ -22,8 +22,8 @@ export default function LandingPage() {
       <p onClick={toggleModal}>Need to register? Click here!</p>
     </div>
 
-      <If condition={showModal}>
-        <Modal title="Register" onClose={this.toggleModal}>
+      <If condition={toggle}>
+        <Modal title="Register" onClose={toggleModal}>
           <SignUpForm />
         </Modal>
       </If>
