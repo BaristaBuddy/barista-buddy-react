@@ -39,8 +39,13 @@ export default function Stores() {
         <h2>Our Partner Stores</h2>
         <ul>
         {storeList != null ? storeList.map((store) =>(
-            <li><h3>{store.name}</h3>
-            <img src={store.storeImageUrl} alt="store"/>
+            <li key={store.id}><h3>{store.name}</h3>
+            <img src={store.storeImageUrl} alt={store.name}/>
+        <p>Street Address: {store.streetAddress}</p>
+        <p>City, State: {store.city}, {store.state}</p>
+        <p>Zip Code: {store.zip}</p>
+        <p>Phone: {store.phone}</p>
+        <a href={store.websiteUrl}>Go to Their Site!</a>
             </li>
         )) : <h3>Loading!</h3>}
         </ul>
