@@ -1,4 +1,5 @@
 import React from 'react';
+import './header.scss';
 import Login from "../auth/login";
 
 import '../../index.scss';
