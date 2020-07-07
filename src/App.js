@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.scss';
 import { Route, Switch } from 'react-router-dom';
 import Header from './components/header';
 import Stores from './components/stores';
@@ -11,7 +10,7 @@ import Footer from './components/footer';
 function App() {
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <main>
         {/* <Switch>
           <Route exact path="/">
@@ -28,7 +27,7 @@ function App() {
           </Route>
         {/* </Switch> */}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
