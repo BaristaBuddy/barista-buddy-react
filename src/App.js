@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from './components/header';
 import Stores from './components/stores';
 import Menu from './components/menu';
-import RegistrationForm from './components/form';
+import SignUpForm from './components/form';
 import About from './components/about';
 import Footer from './components/footer';
 
@@ -12,20 +12,20 @@ function App() {
     <>
       <Header />
       <main>
-        {/* <Switch>
+        <Switch>
           <Route exact path="/">
             <Stores />
           </Route>
-          <Route path="/{ storeId }/menu">
+          {/* <Route path="/{ storeId }/menu">
             <Menu />
-          </Route>
-          <Route path="/register">
-            <RegistrationForm />
           </Route> */}
+          <Route path="/register">
+            <SignUpForm />
+          </Route>
           <Route path="/about">
             <About />
           </Route>
-        {/* </Switch> */}
+        </Switch>
       </main>
       <Footer />
     </>

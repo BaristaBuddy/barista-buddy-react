@@ -1,4 +1,6 @@
-class SignUpForm extends React.Component {
+import React from 'react';
+
+export default class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -7,7 +9,7 @@ class SignUpForm extends React.Component {
       password: '',
       phoneNumber: '',
       email: '',
-      birthdate: new Date(1970, 0, 1, 9, 30),
+      birthDate: new Date(1970, 0, 1, 9, 30),
     };
   }
   submitHandler = (event) => {
