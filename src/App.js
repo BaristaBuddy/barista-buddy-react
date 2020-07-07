@@ -13,11 +13,12 @@ function App() {
     <>
       {/* <Header /> */}
       <main>
-        {/* <Switch>
+        <Switch>
           <Route exact path="/">
             <Stores />
           </Route>
-          <Route path="/{ storeId }/menu">
+          </Switch>
+          {/* <Route path="/{ storeId }/menu">
             <Menu />
           </Route>
           <Route path="/register">

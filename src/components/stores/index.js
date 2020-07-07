@@ -9,11 +9,11 @@ export default function Stores(){
 
 
     const getStores = React.useCallback(()=>{
-        const request = {
+        const requestbody = {
             url: BBurl,
             options: {method: "get"}
         }
-        request(request);
+        request(requestbody);
     }, [request]);
 
     //useEffect for inital Load, Can add more dependencies as needed.
@@ -28,8 +28,10 @@ export default function Stores(){
         } else {
             getStores();
         }
-    }, [response, getStores, setStoreList])
+    }, [response, getStores, setStoreList]);
 
-
+return (
+    <h2>Our Partner Stores</h2>
+);
 
 }
