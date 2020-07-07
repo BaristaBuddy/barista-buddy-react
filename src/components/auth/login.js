@@ -3,25 +3,24 @@ import useAuth from '../../contexts/auth';
 
 const Login = () => {
 
-    const { user} = useAuth();
+    const { user, login, logout} = useAuth();
     const handleSubmit = e => {
         e.preventDefault();
 
-       // const { username, password } = e.target.elements;
+        const { username, password } = e.target.elements;
 
-        //login(username.value, password.value);
+        login(username.value, password.value);
     }
 
     const logoutSubmit = e => {
         e.preventDefault();
-        //logout();
+        logout();
     }
 
-    //const user = auth.user;
-    console.log(user);
+    //console.log(user);
 
-    //switch back to user
-    if (false) {
+    
+    if (user) {
         return (
             <div className="login">
                 {/* <h3>Welcome back, {user.username}!</h3> */}
