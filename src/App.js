@@ -27,7 +27,7 @@ function App() {
           </Route>
         {/* </Switch> */}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
