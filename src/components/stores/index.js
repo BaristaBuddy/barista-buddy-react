@@ -5,7 +5,7 @@ export default function Stores() {
     //needs to be dontenv
     //const todoAPI = 'https://deltav-todo.azurewebsites.net/api/v1/todos';
     const BBurl = 'https://baristabuddyapi.azurewebsites.net/api/stores'
-    const { storeList, setStoreList } = useState([]);
+    const [ storeList, setStoreList ] = useState();
     const { request, response, error, isLoading } = useFetch();
 
 
@@ -25,9 +25,10 @@ export default function Stores() {
 
     //setting storelist
     useEffect(() => {
-        if (response != null) {
-            //setStoreList(response);
+        if (response.length > 0) {
             console.log(response);
+            setStoreList(response);
+            
         } else {
             getStores();
         }
@@ -37,11 +38,11 @@ export default function Stores() {
         <>
         <h2>Our Partner Stores</h2>
         <ul>
-        {/* {response.map((store) =>(
+        {storeList != null ? storeList.map((store) =>(
             <li><h3>{store.name}</h3>
             <img src={store.storeImageUrl} alt="store"/>
             </li>
-        ))} */}
+        )) : <h3>Loading!</h3>}
         </ul>
         </>
     );
