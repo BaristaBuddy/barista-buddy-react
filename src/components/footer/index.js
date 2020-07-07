@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import './footer.scss';
 
-import '../../index.scss';
-
 export default function Footer() {
     
     return (
@@ -21,7 +19,7 @@ export default function Footer() {
                 </Button>
                 </div>
             <span>&copy; 2020 Barista Buddy</span>
-            <Link path="/about">
+            <Link to="/about">
             About the Developers
             </Link>
         </footer>
