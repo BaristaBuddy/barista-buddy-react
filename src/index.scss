@@ -8,4 +8,22 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #ffd59a;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+  img {
+  border-radius: 20px;
+  }
+
+  .users {
+  border-radius: 20px;
+  height: 128px;
+  width: 50px;
+  background-color: #572c18;
+  }
 }
