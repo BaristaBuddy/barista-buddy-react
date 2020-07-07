@@ -23,7 +23,12 @@ export default function useFetch() {
             }
         }
         fetchData();
-    }, [requestObject])
+    }, [requestObject]);
 
+  // request - function that sets the request object
+  // response - the resonse (this is stored in state, updated after the fetchdata function runs)
+  // error - the resonse (this is stored in state, updated after the fetchdata function runs)
+  // isLoading - boolean to toggle load state, changed during operation of the fetchData function
+  return { request, response, error, isLoading };
 
 }
