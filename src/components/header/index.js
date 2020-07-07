@@ -1,6 +1,5 @@
 import React from 'react';
 import Login from "../auth/login";
-
 import '../../index.scss';
 import bbBrownMobile from '../../assets/bb-brown-mobile.png';
 
@@ -13,7 +12,7 @@ export default function Header() {
             <img alt="Barista Buddy Logo in soft caramel" src={bbBrownMobile} />
             </div>
             <div className="users">
-                {/* <Login /> */}
+                <Login />
             </div>
         </header>
     )
