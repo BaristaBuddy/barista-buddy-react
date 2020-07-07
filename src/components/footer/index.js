@@ -20,7 +20,7 @@ export default function Footer() {
                 </Button>
                 </div>
             <span>&copy; 2020 Barista Buddy</span>
-            <Link path="/about">
+            <Link to="/about">
             About the Developers
             </Link>
         </footer>
