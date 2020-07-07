@@ -1,0 +1,22 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  // flex-wrap: wrap;
+  width: 100%;
+
+  .image-wrapper {
+    // width: 100%;
+    img {
+      border-radius: 20px;
+      max-width: 100%;
+      width: auto;
+      height: auto;
+    }
+  }
+  .users {
+  border-radius: 20px;
+  // height: 82px;
+  // width: 50px;
+  background-color: #572c18;
+  }
+}

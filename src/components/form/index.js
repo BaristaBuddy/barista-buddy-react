@@ -12,8 +12,19 @@ export default class SignUpForm extends React.Component {
       birthDate: new Date(1970, 0, 1, 9, 30),
     };
   }
-  submitHandler = (event) => {
-    event.preventDefault();
+  submitHandler = (e) => {
+    e.preventDefault();
+    let formData = {
+      firstName: this.state.firstName,
+      lastName: this.state.lastName,
+      password: this.state.password,
+      phoneNumber: this.state.phoneNumber,
+      email: this.state.email,
+      birthDate: this.state.birthDate,
+    }
+    this.props.data(formData);
+
+    e.target.reset();
   }
   
   changeHandler = (event) => {

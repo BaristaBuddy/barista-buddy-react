@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-
-import '../../index.scss';
+import './footer.scss';
 
 export default function Footer() {
     

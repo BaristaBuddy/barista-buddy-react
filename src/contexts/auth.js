@@ -56,8 +56,7 @@ export class AuthProvider extends React.Component {
         try {
             const payload = jwt.decode(token);
             if (payload) {
-                console.log(payload.FullName);
-                if (!user) {
+                if (true) {
                     user = {
                         //id: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
                         id: payload.sub,

@@ -1,0 +1,82 @@
+.overlay {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 100;
+
+  &:after {
+      background: #000;
+      bottom: 0;
+      content: ' ';
+      left: 0;
+      opacity: .75;
+      position: absolute;
+      right: 0;
+      top: 0;
+  }
+
+  > .modal {
+      background: #fff;
+      color: #000;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      // height: 400px;
+      margin: auto;
+      padding: 0;
+      position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px;
+      z-index: 1000;
+      overflow: auto; /* Enable scroll if needed */
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+      animation-name: animatetop;
+      animation-duration: 0.4s;
+
+      .modal-header {
+        padding-left: 5px;
+          align-items: center;
+          background: #ccc;
+          border-bottom: 1px solid #777;
+          display: flex;
+          font-size: 1rem;
+          font-weight: bold;
+          height: 1.5rem;
+          line-height: 1rem;
+
+          .modal-title {
+              color: #000;
+              flex: 1;
+          }
+
+          button {
+              background: inherit;
+              cursor: pointer;
+              display: inline-block;
+              height: 100%;
+              line-height: 100%;
+              text-align: center;
+              width: 2rem;
+
+              &:hover {
+                  background: #000;
+                  color: #fff;
+              }
+          }
+      }
+
+      .modal-content {
+          flex: 1;
+          padding: 25px;
+      }
+  }
+}
+
+  /* Add Animation */
+@keyframes animatetop {
+  from {top: -300px; opacity: 0}
+  to {top: 0; opacity: 1}
+}

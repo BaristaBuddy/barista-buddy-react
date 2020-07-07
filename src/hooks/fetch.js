@@ -16,6 +16,7 @@ export default function useFetch() {
                 requestObject.options.headers = { 'Content-Type': 'application/json' };
                 const res = await fetch(requestObject.url, requestObject.options);
                 const json = res.status === 200 && await res.json();
+                console.log(res);
                 setResponse(json);
                 setIsLoading(false)
             } catch (error) {
@@ -26,8 +27,8 @@ export default function useFetch() {
     }, [requestObject]);
 
   // request - function that sets the request object
-  // response - the resonse (this is stored in state, updated after the fetchdata function runs)
-  // error - the resonse (this is stored in state, updated after the fetchdata function runs)
+  // response - the response (this is stored in state, updated after the fetchdata function runs)
+  // error - the response (this is stored in state, updated after the fetchdata function runs)
   // isLoading - boolean to toggle load state, changed during operation of the fetchData function
   return { request, response, error, isLoading };
 

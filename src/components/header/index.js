@@ -1,6 +1,6 @@
 import React from 'react';
+import './header.scss';
 import Login from "../auth/login";
-import '../../index.scss';
 import bbBrownMobile from '../../assets/bb-brown-mobile.png';
 
 export default function Header() {
