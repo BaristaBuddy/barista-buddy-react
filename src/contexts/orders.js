@@ -53,7 +53,7 @@ export class OrdersProvider extends React.Component {
     this.setState({ ...this.state, cart: cartList, cartCount: this.getCartCount() });
   }
 
-  getCartCount() {
+  getCartCount = () => {
     let count = 0;
 
     if (this.state.cart.length > 0) {
