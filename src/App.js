@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useParams } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import Header from './components/header';
 import LandingPage from './components/landingPage';
 import Stores from './components/stores';
@@ -10,7 +10,7 @@ import Footer from './components/footer';
 
 function App() {
 
-  const {storeId} = useParams();
+
   return (
     <>
       <Header />
