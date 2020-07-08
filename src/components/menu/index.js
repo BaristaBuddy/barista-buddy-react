@@ -3,10 +3,12 @@ import useFetch from '../../hooks/fetch.js';
 import { useParams, Link, Route } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
 import Modal from '../modal';
 import useOrders from '../../contexts/orders';
+import ItemDetails from './../itemDetails';
 
-export default function (props) {
+export default function Menu(props) {
 
   const { storeId } = useParams();
   const { request, response, error, isLoading } = useFetch();
@@ -48,33 +50,38 @@ export default function (props) {
 
   return (
     <>
-      {menu ? menu.map((item, index) => (
-        <Card key={item.index} style={{ width: '18rem' }}>
-          <Card.Img variant="top" src={item.imageUrl} />
-          <Card.Body>
-            <Card.Title>
-              {item.name}
+      {menu ? menu.map((item) => (
+        <Link to={`/menu/${storeId}/${item.itemId}`}>
+          <Card key={item.itemId} style={{ width: '18rem' }}>
+            <Card.Img variant="top" src={item.imageUrl} />
+            <Card.Body>
+              <Card.Title>
+                {item.name}
               </Card.Title>
-            <Card.Text>
-              Ingredients: {item.ingredients}
+              <Card.Text>
+                Ingredients: {item.ingredients}
                             Price: {formatter.format(item.price)}
-            </Card.Text>
-            <Button variant="link">
-              <Link to={{
-                pathname: `/menu/${storeId}/${index}`,
-                state: {
-                  entry: menu[index],
-                }
-              }}>
-                Add to Cart
-              </Link>
-            </Button>
-          </Card.Body>
-        </Card>
+              </Card.Text>
+              <Addbutton item={item} />
+            </Card.Body>
+          </Card>
+        </Link>
+
       )) : <h3>Loading!</h3>}
-      <Route path='/menu/storeId/:id' component={Modal}>
+      <Route path='/menu/:storeId/:itemId' component={ItemDetails}>
 
       </Route>
     </>
+  )
+}
+
+function Addbutton(props) {
+
+  const { addNew } = useOrders();
+
+  return (
+    <button onClick={() => addNew(props.item)}>
+      add to cart
+    </button>
   )
 }
