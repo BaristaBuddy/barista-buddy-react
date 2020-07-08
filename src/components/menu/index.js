@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/fetch.js';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
@@ -46,16 +46,21 @@ export default function (props) {
 
     return (
         <>
-            {menu ? menu.map(item => (
-                <Card style={{ width: '18rem' }}>
+            {menu ? menu.map((item, index) => (
+                <Card key={item.index} style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={item.imageUrl} />
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Text>
-                            <p>Ingredients: {item.ingredients}</p>
-                            <h3>Price: {formatter.format(item.price)}</h3>
+                            Ingredients: {item.ingredients}
+                            Price: {formatter.format(item.price)}
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                        <Button variant="link"> <Link to={{
+                            pathname: `/menu/${storeId}/${index}`,
+                            state: {
+                             entry: menu[index],
+                            }
+                          }}>Add to Cart</Link> </Button>
                     </Card.Body>
                 </Card>
             )) : <h3>Loading!</h3>}
