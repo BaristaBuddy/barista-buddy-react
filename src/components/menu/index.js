@@ -50,6 +50,9 @@ export default function Menu(props) {
 
   return (
     <>
+      <Route path='/menu/:storeId/:itemId'>
+        <ItemDetails />
+      </Route>
       {menu ? menu.map((item) => (
         <Link to={`/menu/${storeId}/${item.itemId}`}>
           <Card key={item.itemId} style={{ width: '18rem' }}>
@@ -60,7 +63,7 @@ export default function Menu(props) {
               </Card.Title>
               <Card.Text>
                 Ingredients: {item.ingredients}
-                            Price: {formatter.format(item.price)}
+                Price: {formatter.format(item.price)}
               </Card.Text>
               <Addbutton item={item} />
             </Card.Body>
@@ -68,9 +71,6 @@ export default function Menu(props) {
         </Link>
 
       )) : <h3>Loading!</h3>}
-      <Route path='/menu/:storeId/:itemId' component={ItemDetails}>
-
-      </Route>
     </>
   )
 }
