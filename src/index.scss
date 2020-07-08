@@ -3,20 +3,27 @@
     box-sizing: border-box;
     font-family: 'Exo', sans-serif !important;
 }
- #root {
+
+html {
   background: #ffd59a;
- }
+}
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #ffd59a;
+  // background: #ffd59a;
   min-height: 100vh;
   min-width: 350px;
-  main {
-    min-height: 100vh;
+  #root {
+    background: #ffd59a;
+    height: 100%;
+    main {
+      height: 100%;
+      background: #ffd59a;
+    }
   }
+
 }
 
 .cart-tab {
@@ -30,5 +37,9 @@ body {
   a {
     text-decoration: none;
     color: #fff;
+    &:hover {
+      color: #000;
+      text-decoration: none;
+    }
   }
 }
