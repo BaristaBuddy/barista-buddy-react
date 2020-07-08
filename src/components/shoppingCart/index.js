@@ -39,9 +39,9 @@ function ShoppingCart() {
 }
 
 function Removebutton(props) {
-  const state = useOrders();
+  const { cart, removeItem } = useOrders();
   return (
-    <button onClick={() => state.removeItem(state.cart.indexOf(props.item))}>
+    <button onClick={() => removeItem(cart.indexOf(props.item))}>
       remove
     </button>
   )
