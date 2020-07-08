@@ -12,3 +12,17 @@ body {
   min-height: 100vh;
   min-width: 350px;
 }
+
+.cart-tab {
+  position: fixed;
+  right: 0;
+  top: 50vh;
+  background: #c9641c;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  a {
+    text-decoration: none;
+    color: #fff;
+  }
+}
