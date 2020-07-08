@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
-import { prettyDOM } from '@testing-library/react';
 
-const ordersAPI = 'https://baristabuddyapi.azurewebsites.net/api/orders/';
+// const ordersAPI = 'https://baristabuddyapi.azurewebsites.net/api/orders/';
 
 export const OrdersContext = React.createContext();
 
