@@ -24,10 +24,9 @@
 - [x] Include store images in the database
 - [x] DELETE database items
 - [x] Join tables
-- [ ] GET Users
-- [ ] POST Users
+- [x] GET Users
+- [x] POST Users
 - [ ] PUT Users
-- [ ] DELETE Users
 - [ ] GET Cart
 - [ ] POST Cart
 - [ ] PUT Cart
@@ -42,21 +41,16 @@
 - [x] Be able to GET from the MVC side and API side
 - [x] Be able to DELETE from the MVC side and API side
 - [x] Have a table column for image URLs
-- [ ] Be able to POST from React
-- [ ] Be able to PUT from React
-- [ ] Be able to GET from React
-- [ ] Be able to DELETE from React
-- [ ] Be able to POST for users
+- [x] Be able to POST for users
 - [ ] Be able to PUT for users
-- [ ] Be able to GET for users
-- [ ] Be able to DELETE for users
+- [x] Be able to GET for users
 - [ ] Be able to POST for cart
 - [ ] Be able to PUT for cart
 - [ ] Be able to GET for cart
 - [ ] Be able to DELETE for cart
-- [ ] Main site with store/ item levels
-- [ ] User login
+- [x] Main site with store/ item levels
+- [x] User login
+- [ ] Beautiful and navigable site
 - [ ] View/Edit shopping cart
 - [ ] STRETCH: Create potential advertisements
 - [ ] STRETCH: Establish working connection with Stripe API
-
