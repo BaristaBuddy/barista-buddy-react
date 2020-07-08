@@ -4,6 +4,7 @@ import Header from './components/header';
 import LandingPage from './components/landingPage';
 import Stores from './components/stores';
 import Menu from './components/menu';
+import ShoppingCart from './components/shoppingCart';
 import SignUpForm from './components/form';
 import About from './components/about';
 import Footer from './components/footer';
@@ -25,6 +26,9 @@ function App() {
           </Route>
           <Route path="/menu/:storeId">
             <Menu />
+          </Route>
+          <Route path="/cart">
+            <ShoppingCart />
           </Route>
           <Route path="/register">
             <SignUpForm />
