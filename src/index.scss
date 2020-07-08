@@ -17,7 +17,7 @@ body {
   min-width: 350px;
   #root {
     background: #ffd59a;
-    height: 100%;
+    min-height: 100vh;
     main {
       height: 100%;
       background: #ffd59a;
@@ -29,7 +29,7 @@ body {
 .cart-tab {
   position: fixed;
   right: 0;
-  top: 50vh;
+  top: 40vh;
   background: #c9641c;
   height: 4rem;
   width: 4rem;
