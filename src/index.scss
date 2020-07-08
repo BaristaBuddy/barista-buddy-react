@@ -3,6 +3,9 @@
     box-sizing: border-box;
     font-family: 'Exo', sans-serif !important;
 }
+ #root {
+  background: #ffd59a;
+ }
 
 body {
   margin: 0;
@@ -11,6 +14,9 @@ body {
   background: #ffd59a;
   min-height: 100vh;
   min-width: 350px;
+  main {
+    min-height: 100vh;
+  }
 }
 
 .cart-tab {
