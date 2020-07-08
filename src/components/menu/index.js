@@ -22,7 +22,7 @@ export default function (props) {
         request(requestbody);
     }, [request, BBurl]);
 
-    //useEffect for inital Load, Can add more dependencies as needed.
+    //useEffect for initial Load, Can add more dependencies as needed.
     useEffect(() => {
         getItems();
     }, [getItems]);
