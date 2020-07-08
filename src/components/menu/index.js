@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/fetch.js';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Route } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Modal from '../modal';
 
 export default function (props) {
 
@@ -42,7 +43,7 @@ export default function (props) {
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: 2
-      })
+    })
 
     return (
         <>
@@ -58,13 +59,15 @@ export default function (props) {
                         <Button variant="link"> <Link to={{
                             pathname: `/menu/${storeId}/${index}`,
                             state: {
-                             entry: menu[index],
+                                entry: menu[index],
                             }
-                          }}>Add to Cart</Link> </Button>
+                        }}>Add to Cart</Link> </Button>
                     </Card.Body>
                 </Card>
             )) : <h3>Loading!</h3>}
+            <Route path='/menu/storeId/:id' component={Modal}>
 
+            </Route>
         </>
     )
 }
