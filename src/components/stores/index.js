@@ -42,9 +42,9 @@ export default function Stores() {
       {storeList != null ? storeList.map((store) => (
         <Link to={{
           pathname: `/menu/${store.id}`,
-          state: {
-            entry: store.id,
-          }
+          // state: {
+          //   entry: store.id,
+          // }
         }}>
           <Card key={store.id} style={{ width: '18rem'}}>
             <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
