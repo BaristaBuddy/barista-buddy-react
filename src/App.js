@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch} from 'react-router-dom';
 import Header from './components/header';
 import LandingPage from './components/landingPage';
 import Stores from './components/stores';
@@ -9,6 +9,8 @@ import About from './components/about';
 import Footer from './components/footer';
 
 function App() {
+
+
   return (
     <>
       <Header />
@@ -20,9 +22,9 @@ function App() {
             <Route path="/stores">
             <Stores />
           </Route>
-          {/* <Route path="/{ storeId }/menu">
+          <Route path="/menu/:storeId">
             <Menu />
-          </Route> */}
+          </Route>
           <Route path="/register">
             <SignUpForm />
           </Route>
