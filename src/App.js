@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import Header from './components/header';
 import LandingPage from './components/landingPage';
 import Stores from './components/stores';
@@ -16,20 +16,25 @@ function App() {
   return (
     <>
       <Header />
+      <div className="cart-tab">
+        <Link to="/cart">
+        <h1>Cart</h1>
+        </Link>    
+          </div>
       <main>
         <Switch>
           <Route exact path="/">
             <LandingPage />
-            </Route>
-            <Route path="/stores">
+          </Route>
+          <Route path="/stores">
             <Stores />
           </Route>
           <Route path="/menu/:storeId">
             <Menu />
           </Route>
-          <Route path="/cart">
-            <ShoppingCart />
-          </Route>
+            <Route path="/cart">
+              <ShoppingCart />
+            </Route>
           <Route path="/register">
             <SignUpForm />
           </Route>
