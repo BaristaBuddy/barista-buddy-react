@@ -17,13 +17,13 @@ export class OrdersProvider extends React.Component {
       currentStore: null,
       cartCount: 0,
 
-      addItem: this.addItem,
-      removeItem: this.removePaid,
+      addNew: this.addNew,
+      removeItem: this.removeItem,
     };
   }
 
-  addNew(item) {
-    let newList = this.props.cart;
+  addNew = (item) => {
+    let newList = this.state.cart;
 
     const newItem = {
       count: 1,
@@ -45,7 +45,7 @@ export class OrdersProvider extends React.Component {
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
   }
 
-  removeItem(index) {
+  removeItem = (index) => {
     const cartList = this.state.cart;
 
     cartList.splice(index, 1);
