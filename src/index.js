@@ -1,18 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './reset.scss';
 import './index.scss';
 import App from './App';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { AuthProvider } from './contexts/auth.js';
 import * as serviceWorker from './serviceWorker';
+import { OrdersProvider } from './contexts/orders';
 
 
 ReactDOM.render(
   <React.StrictMode>
     <AuthProvider>
-      <BrowserRouter>
-    <App />
-    </BrowserRouter>
+      <OrdersProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </OrdersProvider>
     </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')

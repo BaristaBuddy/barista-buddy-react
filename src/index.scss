@@ -4,11 +4,42 @@
     font-family: 'Exo', sans-serif !important;
 }
 
+html {
+  background: #ffd59a;
+}
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #ffd59a;
+  // background: #ffd59a;
   min-height: 100vh;
   min-width: 350px;
+  #root {
+    background: #ffd59a;
+    min-height: 100vh;
+    main {
+      height: 100%;
+      background: #ffd59a;
+    }
+  }
+
+}
+
+.cart-tab {
+  position: fixed;
+  right: 0;
+  top: 40vh;
+  background: #c9641c;
+  height: 4rem;
+  width: 4rem;
+  border-radius: 50%;
+  a {
+    text-decoration: none;
+    color: #fff;
+    &:hover {
+      color: #000;
+      text-decoration: none;
+    }
+  }
 }
