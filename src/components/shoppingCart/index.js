@@ -3,7 +3,7 @@ import useOrders from '../../contexts/orders';
 
 function ShoppingCart() {
   
-  const { cart } = useOrders();
+  const { cart, removeItem, Reset } = useOrders();
 
   const cartlist = cart.map((i, index) => {
     return (
@@ -13,7 +13,7 @@ function ShoppingCart() {
         <td>{i.id}</td>
         <td>{i.name}</td>
         <td>{'x' + i.count}</td>
-    <td>{<Removebutton item={i} />} </td>
+    <td>{<Removebutton item={i} text="Remove Item" func={removeItem} cart={cart} />} </td>
       </tr>
       </>
     )
@@ -42,10 +42,10 @@ function ShoppingCart() {
 }
 
 function Removebutton(props) {
-  const { cart, removeItem } = useOrders();
+  const cart = props.cart;
   return (
-    <button onClick={() => removeItem(cart.indexOf(props.item))}>
-      remove
+    <button onClick={() => props.func(cart.indexOf(props.item))}>
+      {props.text}
     </button>
   )
 }
