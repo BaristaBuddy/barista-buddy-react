@@ -12,7 +12,7 @@ export default function ItemDetails(props) {
   const { storeId, itemId } = useParams();
   const { request, response } = useFetch();
   const [itemDetails, setItemDetails] = useState([]);
-  const [toggle, setToggle] = useState(false);
+  const { onClose } = props;
 
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items/${itemId}`;
 
@@ -27,7 +27,7 @@ export default function ItemDetails(props) {
   //useEffect for initial Load, Can add more dependencies as needed.
   useEffect(() => {
     getItem();
-   
+
   }, [getItem]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function ItemDetails(props) {
   // useEffect(() => {
   //   if (response.length > 0) {
   //     console.log(response);
-     
+
 
   //   } else {
   //     getItem();
@@ -50,34 +50,32 @@ export default function ItemDetails(props) {
     minimumFractionDigits: 2
   })
 
-  const toggleModal = () => {
-    setToggle(!toggle);
-  }
 
   return (
     <div className="details-wrapper">
-        <Modal title="Item Details" onClose={toggleModal}>
-      <form >
-          <img src={itemDetails.imageUrl} alt={itemDetails.name} />
-          <h2>{itemDetails.name}</h2>
-          <p>{itemDetails.ingredients}</p>
-          {/* {itemDetails.itemModifiers.map((itemModifier) => (
+        <Modal title="Item Details" onClose={onClose}>
+          <form >
+            {/* <img src={itemDetails.imageUrl} alt={itemDetails.name} /> */}
+            <h2>{itemDetails.name}</h2>
+            <p>{itemDetails.ingredients}</p>
+            {/* {itemDetails.itemModifiers.map((itemModifier) => (
             <label>
               {itemModifier.modifierName}
               <input type="checkbox" name="Modifier" value={itemModifier.modifierName} />
               {itemModifier.additionalCost}
             </label>
           ))} */}
-          {console.log(itemDetails.itemModifiers)}
-          <p>{formatter.format(itemDetails.price)}</p>
-          <Button
-            variant="secondary">Close
+            {console.log(itemDetails.itemModifiers)}
+            <p>{formatter.format(itemDetails.price)}</p>
+            <Button
+              variant="secondary"
+              onClick={onClose}
+            >
+              Close
           </Button>
-          {/* <Button variant="primary"> */}
-          <Addbutton item={itemDetails} />
-          {/* </Button> */}
-      </form>
-    </Modal>
+            <Addbutton item={itemDetails} onClick={onClose} />
+          </form>
+        </Modal>
     </div>
   )
 }
