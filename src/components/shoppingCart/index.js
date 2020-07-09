@@ -43,11 +43,19 @@ function ShoppingCart() {
 
 function Removebutton(props) {
   const cart = props.cart;
+  if(props.item !== null){
   return (
     <button onClick={() => props.func(cart.indexOf(props.item))}>
       {props.text}
     </button>
   )
+  } else {
+    return (
+      <button onClick={() => props.func()}>
+        {props.text}
+      </button>
+    )
+  }
 }
 
 export default ShoppingCart;
