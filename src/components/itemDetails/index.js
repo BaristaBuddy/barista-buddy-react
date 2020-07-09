@@ -90,13 +90,3 @@ export default function ItemDetails(props) {
   )
 }
 
-function Addbutton(props) {
-
-  const { addNew } = useOrders();
-
-  return (
-    <button onClick={() => addNew(props.item)}>
-      add to cart
-    </button>
-  )
-}
