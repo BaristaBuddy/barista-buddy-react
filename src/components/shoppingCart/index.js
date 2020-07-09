@@ -3,7 +3,7 @@ import useOrders from '../../contexts/orders';
 
 function ShoppingCart() {
   
-  const { cart, removeItem, Reset } = useOrders();
+  const { cart, removeItem, Reset, GetTotalPrice } = useOrders();
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
@@ -22,6 +22,7 @@ function ShoppingCart() {
     <td>{<Removebutton item={i} text="Remove Item" func={removeItem} cart={cart} />} </td>
       </tr>
       <Removebutton text="Delete Order" func={Reset} cart={cart} />
+    <h3>Total Price: {formatter.format(GetTotalPrice())}</h3>
       </>
     )
   })
