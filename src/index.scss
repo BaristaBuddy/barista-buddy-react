@@ -26,20 +26,26 @@ body {
 
 }
 
-.cart-tab {
-  position: fixed;
-  right: 0;
-  top: 40vh;
-  background: #c9641c;
-  height: 4rem;
-  width: 4rem;
-  border-radius: 50%;
-  a {
-    text-decoration: none;
-    color: #fff;
-    &:hover {
-      color: #000;
-      text-decoration: none;
+a {
+  text-decoration: none;
+  .cart-tab {
+    position: fixed;
+    right: 0;
+    top: 40vh;
+    background: #c9641c;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    svg {
+      font-size: 2rem;
+      color: #fff;
+      &:hover {
+        color: #000;
+      }
     }
   }
 }
