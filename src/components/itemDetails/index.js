@@ -3,6 +3,7 @@ import { useParams, Link, Route } from 'react-router-dom';
 import useFetch from '../../hooks/fetch';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import './itemDetails.scss';
 
 
 export default function ItemDetails(props) {
@@ -52,6 +53,7 @@ export default function ItemDetails(props) {
   })
 
   return (
+    <div className="details-wrapper">
     <Modal.Dialog
     {...props}
     show={show}
@@ -92,5 +94,6 @@ export default function ItemDetails(props) {
         </Modal.Footer>
       </form>
     </Modal.Dialog>
+    </div>
   )
 }

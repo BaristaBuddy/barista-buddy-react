@@ -1,22 +1,38 @@
 header {
+  width: 100%;
+  .header-wrapper {
   display: flex;
   justify-content: space-between;
-  // flex-wrap: wrap;
-  width: 100%;
+  }
 
   .image-wrapper {
-    // width: 100%;
+    // display: inline-block;
+    max-width: 50%;
     img {
       border-radius: 20px;
       max-width: 100%;
-      width: auto;
       height: auto;
     }
   }
   .users {
-  border-radius: 20px;
-  // height: 82px;
-  // width: 50px;
-  background-color: #572c18;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 77.66px;
+    color: #fff;
+    background-color: #280f00;
+    max-width: 40%;
+    .login {
+      h3{
+        font-size: .75rem;
+      }
+    }
+    form{
+      text-align: center;
+      button {
+      font-size: 0.75rem;
+      }
+    }
   }
 }
