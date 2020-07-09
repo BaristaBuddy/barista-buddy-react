@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
-import {user} from '../contexts/auth';
+import AuthContext from '../contexts/auth';
 
 
 // const ordersAPI = 'https://baristabuddyapi.azurewebsites.net/api/orders/';
-const localURL = 'https://localhost:5001/api/orders/'
 
 export const OrdersContext = React.createContext();
 
@@ -21,21 +20,33 @@ export class OrdersProvider extends React.Component {
       currentStore: null,
       cartCount: 0,
       url: 'https://localhost:5001/api/orders/',
+      user: AuthContext,
 
       addNew: this.addNew,
       removeItem: this.removeItem,
       CreateOrder: this.CreateOrder,
     };
   }
-  
 
-  CreateOrder =(storeId) => {
 
+  CreateOrder = async (storeId) => {
+    let data = {
+      storeId: storeId,
+    }
+    let request = {
+      url: this.state.url,
+      options: {
+        method: "post", 
+        body: JSON.stringify(data),
+        header: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.state.user.token}` }
+      }
+    }
+    await fetch(request);
   }
 
   addNew = (item) => {
 
-    if(this.state.cart == null) this.state.CreateOrder(item.storeId);
+    if (this.state.cart == null) this.state.CreateOrder(item.storeId);
     let newList = this.state.cart;
 
     const newItem = {
