@@ -1,5 +1,7 @@
 import React from 'react';
 import useOrders from '../../contexts/orders';
+import useAuth from '../../contexts/auth';
+import { useHistory } from "react-router-dom";
 
 function ShoppingCart() {
   
@@ -8,7 +10,8 @@ function ShoppingCart() {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 2
-  })
+  });
+  let history = useHistory();
 
   const cartlist = cart.map((i, index) => {
     return (
@@ -16,13 +19,14 @@ function ShoppingCart() {
       <h2>Your Cart</h2>
       <tr key={index}>
         <td>{i.id}</td>
-        <td>{i.name}</td>
+        <td>`{i.name}  `</td>
         <td>{'x' + i.count}</td>
         <td>{formatter.format(i.price * i.count)}</td>
-    <td>{<Removebutton item={i} text="Remove Item" func={removeItem} cart={cart} />} </td>
+    <td>{<Removebutton item={index} text="Remove Item" func={removeItem} />} </td>
       </tr>
-      <Removebutton text="Delete Order" func={Reset} cart={cart} />
+      <Removebutton text="Delete Order" func={Reset} />
     <h3>Total Price: {formatter.format(GetTotalPrice())}</h3>
+    <Removebutton text="Back To Stores" func={history.push} item="/stores"/>
       </>
     )
   })
@@ -50,10 +54,9 @@ function ShoppingCart() {
 }
 
 function Removebutton(props) {
-  const cart = props.cart;
   if(props.item !== null){
   return (
-    <button onClick={() => props.func(cart.indexOf(props.item))}>
+    <button onClick={() => props.func(props.item)}>
       {props.text}
     </button>
   )
