@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
+import {user} from '../contexts/auth';
+
 
 // const ordersAPI = 'https://baristabuddyapi.azurewebsites.net/api/orders/';
+const localURL = 'https://localhost:5001/api/orders/'
 
 export const OrdersContext = React.createContext();
 
@@ -13,16 +16,26 @@ export class OrdersProvider extends React.Component {
     super(props);
 
     this.state = {
+      orderId: null,
       cart: [],
       currentStore: null,
       cartCount: 0,
+      url: 'https://localhost:5001/api/orders/',
 
       addNew: this.addNew,
       removeItem: this.removeItem,
+      CreateOrder: this.CreateOrder,
     };
+  }
+  
+
+  CreateOrder =(storeId) => {
+
   }
 
   addNew = (item) => {
+
+    if(this.state.cart == null) this.state.CreateOrder(item.storeId);
     let newList = this.state.cart;
 
     const newItem = {

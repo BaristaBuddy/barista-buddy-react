@@ -16,7 +16,7 @@ export default function useFetch() {
                 requestObject.options.headers = { 'Content-Type': 'application/json' };
                 const res = await fetch(requestObject.url, requestObject.options);
                 const json = res.status === 200 && await res.json();
-                console.log(res);
+                console.log(res.body);
                 setResponse(json);
                 setIsLoading(false)
             } catch (error) {

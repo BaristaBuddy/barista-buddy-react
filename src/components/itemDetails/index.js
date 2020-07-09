@@ -78,7 +78,7 @@ export default function ItemDetails(props) {
               {itemModifier.additionalCost}
             </label>
           ))} */}
-          {console.log(itemDetails.itemModifiers)}
+          {console.log(itemDetails)}
           <p>{formatter.format(itemDetails.price)}</p>
         </Modal.Body>
 
