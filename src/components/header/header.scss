@@ -25,7 +25,7 @@ header {
     max-width: 40%;
     .login {
       h3{
-        font-size: .75rem;
+        font-size: 0.75rem;
       }
     }
     form{
@@ -35,4 +35,10 @@ header {
       }
     }
   }
+}
+
+@media(min-width: 520px){
+    .login h3 {
+      font-size: 2rem;
+    }
 }
