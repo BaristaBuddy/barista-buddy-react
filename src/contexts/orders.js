@@ -70,13 +70,18 @@ export class OrdersProvider extends React.Component {
       body: JSON.stringify(newOrderItem),
       headers: { 'Content-Type': 'application/json' }
     };
-    await fetch(itemUrl, requestItem);
+    const response = await fetch(itemUrl, requestItem);
+    const responseJSON = await response.json();
+    const orderId = responseJSON.id;
+    return orderId;
   }
   UpdateItemQuantity = async (item) => {
     console.log("updating quantity!");
-    const updateItemUrl = `${this.state.apiUrl}order/item/${parseInt(item.id)}`;
+    const updateItemUrl = `${this.state.apiUrl}order/item/${parseInt(item.orderItemId)}`;
     const updatedItem = {
-      Id: item.id,
+      Id: item.orderItemId,
+      orderId: this.state.orderId,
+      itemId: item.id,
       quantity: item.count,
     };
     let requestUpdate = {
@@ -84,7 +89,8 @@ export class OrdersProvider extends React.Component {
       body: JSON.stringify(updatedItem),
       headers: { 'Content-Type': 'application/json' }
     };
-    await fetch(updateItemUrl, requestUpdate);
+    const response = await fetch(updateItemUrl, requestUpdate);
+    return (response ? "Item Updated" : "Update Failed");
   }
 
   addNew = async (item) => {
@@ -107,11 +113,13 @@ export class OrdersProvider extends React.Component {
     if (filtered.length > 0) {
       const pos = newList.map(i => { return i.id; }).indexOf(item.itemId);
       newList[pos].count += 1;
-      this.state.UpdateItemQuantity(newList[pos]);
+      const message = await this.state.UpdateItemQuantity(newList[pos]);
+      console.log(message);
     } else {
+      const orderItemId =  await this.CreateItem(item);
+      newItem.orderItemId = orderItemId;
       newList.push(newItem);
       this.setState({ currentStore: item.storeId });
-      this.CreateItem(item);
     }
 
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
