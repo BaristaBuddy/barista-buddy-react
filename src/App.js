@@ -10,17 +10,19 @@ import About from './components/about';
 import Footer from './components/footer';
 import 'bootstrap/dist/css/bootstrap.css';
 
-function App() {
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+function App() {
 
   return (
     <>
       <Header />
-      <div className="cart-tab">
-        <Link to="/cart">
-        <h1>Cart</h1>
-        </Link>    
-          </div>
+      <Link to="/cart">
+        <div className="cart-tab">
+          <FontAwesomeIcon icon={faShoppingCart} />
+        </div>
+      </Link>
       <main>
         <Switch>
           <Route exact path="/">
@@ -32,9 +34,9 @@ function App() {
           <Route path="/menu/:storeId">
             <Menu />
           </Route>
-            <Route path="/cart">
-              <ShoppingCart />
-            </Route>
+          <Route path="/cart">
+            <ShoppingCart />
+          </Route>
           <Route path="/register">
             <SignUpForm />
           </Route>
