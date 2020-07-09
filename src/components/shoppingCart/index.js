@@ -1,6 +1,5 @@
 import React from 'react';
 import useOrders from '../../contexts/orders';
-import useAuth from '../../contexts/auth';
 import { useHistory } from "react-router-dom";
 
 function ShoppingCart() {
