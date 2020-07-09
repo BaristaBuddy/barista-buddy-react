@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/fetch';
-import Modal from 'react-bootstrap/Modal';
+import Modal from './../modal';
 import Button from 'react-bootstrap/Button';
 import './itemDetails.scss';
-
+import useOrders from '../../contexts/orders';
 
 export default function ItemDetails(props) {
   console.log(props);
@@ -12,6 +12,8 @@ export default function ItemDetails(props) {
   const { storeId, itemId } = useParams();
   const { request, response } = useFetch();
   const [itemDetails, setItemDetails] = useState([]);
+  const [toggle, setToggle] = useState(false);
+
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items/${itemId}`;
 
   const getItem = React.useCallback(() => {
@@ -48,23 +50,15 @@ export default function ItemDetails(props) {
     minimumFractionDigits: 2
   })
 
+  const toggleModal = () => {
+    setToggle(!toggle);
+  }
+
   return (
     <div className="details-wrapper">
-    <Modal.Dialog
-    {...props}
-    size="lg"
-    aria-labelledby={itemDetails.name}
-    centered
-    >
+        <Modal title="Item Details" onClose={toggleModal}>
       <form >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            Item Details
-        </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          {/* <img src={itemDetails.imageUrl} alt={itemDetails.name} /> */}
+          <img src={itemDetails.imageUrl} alt={itemDetails.name} />
           <h2>{itemDetails.name}</h2>
           <p>{itemDetails.ingredients}</p>
           {/* {itemDetails.itemModifiers.map((itemModifier) => (
@@ -76,18 +70,25 @@ export default function ItemDetails(props) {
           ))} */}
           {console.log(itemDetails.itemModifiers)}
           <p>{formatter.format(itemDetails.price)}</p>
-        </Modal.Body>
-
-        <Modal.Footer>
           <Button
             variant="secondary">Close
           </Button>
-          <Button variant="primary">
-            Add to Cart
-          </Button>
-        </Modal.Footer>
+          {/* <Button variant="primary"> */}
+          <Addbutton item={itemDetails} />
+          {/* </Button> */}
       </form>
-    </Modal.Dialog>
+    </Modal>
     </div>
+  )
+}
+
+function Addbutton(props) {
+
+  const { addNew } = useOrders();
+
+  return (
+    <button onClick={() => addNew(props.item)}>
+      add to cart
+    </button>
   )
 }
