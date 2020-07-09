@@ -1,5 +1,8 @@
-.modal.dialog {
-  z-index: 9999;
-  position: fixed;
-  top: 0
+.details-wrapper {
+  height: 0;
+  .modal.dialog {
+  z-index: 100;
+  // position: fixed;
+  // top: 0
+  }
 }
