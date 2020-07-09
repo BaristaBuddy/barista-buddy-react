@@ -12,8 +12,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import useOrders from './contexts/orders';
 
 function App() {
+  let { cartCount } = useOrders();
 
   return (
     <>
@@ -21,6 +23,7 @@ function App() {
       <Link to="/cart">
         <div testId="cart" className="cart-tab">
           <FontAwesomeIcon icon={faShoppingCart} />
+          <h3>{cartCount}</h3>
         </div>
       </Link>
       <main>
