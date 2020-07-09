@@ -1,3 +1,6 @@
+# Barista Buddy
+![Node.js Package](https://github.com/BaristaBuddy/barista-buddy-react/workflows/Node.js%20Package/badge.svg)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
