@@ -4,6 +4,11 @@ import useOrders from '../../contexts/orders';
 function ShoppingCart() {
   
   const { cart, removeItem, Reset } = useOrders();
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  })
 
   const cartlist = cart.map((i, index) => {
     return (
@@ -13,6 +18,7 @@ function ShoppingCart() {
         <td>{i.id}</td>
         <td>{i.name}</td>
         <td>{'x' + i.count}</td>
+        <td>{formatter.format(i.price * i.count)}</td>
     <td>{<Removebutton item={i} text="Remove Item" func={removeItem} cart={cart} />} </td>
       </tr>
       <Removebutton text="Delete Order" func={Reset} cart={cart} />
