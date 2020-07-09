@@ -42,7 +42,7 @@ export default function Stores() {
       <div className="card-container">
         {storeList != null ? storeList.map((store) => (
           <Link to={`/menu/${store.id}`} 
-          style={{zIndex:-1}}
+          style={{zIndex:1}}
           >
             <Card key={store.id} >
               <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
