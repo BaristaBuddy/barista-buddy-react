@@ -6,7 +6,7 @@ import Login from './../auth/login';
 import useFetch from '../../hooks/fetch';
 import './landingPage.scss';
 
-import bbBrown from './../../assets/barista-buddy-brown.png';
+// import bbBrown from './../../assets/barista-buddy-brown.png';
 import bbBrownMobile from './../../assets/bb-brown-mobile.png';
 
 
