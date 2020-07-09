@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/fetch.js';
 import { useParams, Link, Route } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
-import Modal from '../modal';
+// import Modal from '../modal';
 import useOrders from '../../contexts/orders';
 import ItemDetails from './../itemDetails';
 
@@ -12,7 +12,7 @@ import ItemDetails from './../itemDetails';
 export default function Menu(props) {
 
   const { storeId } = useParams();
-  const { request, response, error, isLoading } = useFetch();
+  const { request, response } = useFetch();
   const [menu, setMenu] = useState([]);
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items`;
  
@@ -52,27 +52,28 @@ export default function Menu(props) {
 
   return (
     <>
-      <Route path='/menu/:storeId/:itemId'>
-        <ItemDetails />
-      </Route>
-      {menu ? menu.map((item) => (
-        //<Link to={`/menu/${storeId}/${item.itemId}`}>
-          <Card key={item.itemId} style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.imageUrl} />
-            <Card.Body>
-              <Card.Title>
-                {item.name}
-              </Card.Title>
-              <Card.Text>
-                Ingredients: {item.ingredients}
+      <div className="card-container">
+        <Route path='/menu/:storeId/:itemId'>
+          <ItemDetails />
+        </Route>
+        {menu ? menu.map((item) => (
+          <Link to={`/menu/${storeId}/${item.itemId}`}>
+            <Card key={item.itemId}>
+              <Card.Img variant="top" src={item.imageUrl} />
+              <Card.Body>
+                <Card.Title>
+                  {item.name}
+                </Card.Title>
+                <Card.Text>
+                  Ingredients: {item.ingredients}
                 Price: {formatter.format(item.price)}
-              </Card.Text>
-              <Addbutton item={item} />
-            </Card.Body>
-          </Card>
-        //</Link>
-
-      )) : <h3>Loading!</h3>}
+                </Card.Text>
+                <Addbutton item={item} />
+              </Card.Body>
+            </Card>
+          </Link>
+        )) : <h3>Loading!</h3>}
+      </div>
     </>
   )
 }

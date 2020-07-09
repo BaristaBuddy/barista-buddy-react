@@ -15,7 +15,7 @@ ReactDOM.render(
       <OrdersProvider>
         <BrowserRouter>
           <App />
-        </BrowserRouter>
+        </BrowserRouter> 
       </OrdersProvider>
     </AuthProvider>
   </React.StrictMode>,

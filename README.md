@@ -1,3 +1,7 @@
+# Barista Buddy
+![Node.js Package](https://github.com/BaristaBuddy/barista-buddy-react/workflows/Node.js%20Package/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3912ba64-e5ba-48c7-a803-774116b7dd8a/deploy-status)](https://app.netlify.com/sites/baristabuddy/deploys)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

@@ -8,7 +8,7 @@ export default function Stores() {
   //const todoAPI = 'https://deltav-todo.azurewebsites.net/api/v1/todos';
   const BBurl = 'https://baristabuddyapi.azurewebsites.net/api/stores'
   const [storeList, setStoreList] = useState();
-  const { request, response, error, isLoading } = useFetch();
+  const { request, response } = useFetch();
 
 
 
@@ -39,30 +39,29 @@ export default function Stores() {
   return (
     <>
       <h2>Our Partner Stores</h2>
-      {storeList != null ? storeList.map((store) => (
-        <Link to={{
-          pathname: `/menu/${store.id}`,
-          // state: {
-          //   entry: store.id,
-          // }
-        }}>
-          <Card key={store.id} style={{ width: '18rem'}}>
-            <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
-            <Card.Body>
-              <Card.Title>
-                {store.name}
-              </Card.Title>
-              <Card.Text>
-                <p>Street Address: {store.streetAddress}</p>
-                <p>City, State: {store.city}, {store.state}</p>
-                <p>Zip Code: {store.zip}</p>
-                <p>Phone: {store.phone}</p>
-                <a href={store.websiteUrl}>Go to Their Site!</a>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </Link>
-      )) : <h3>Loading!</h3>}
+      <div className="card-container">
+        {storeList != null ? storeList.map((store) => (
+          <Link to={{
+            pathname: `/menu/${store.id}`
+          }}>
+            <Card key={store.id}>
+              <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
+              <Card.Body>
+                <Card.Title>
+                  {store.name}
+                </Card.Title>
+                <Card.Text>
+                  <p>Street Address: {store.streetAddress}</p>
+                  <p>City, State: {store.city}, {store.state}</p>
+                  <p>Zip Code: {store.zip}</p>
+                  <p>Phone: {store.phone}</p>
+                  <a href={store.websiteUrl}>Go to Their Site!</a>
+                </Card.Text>
+              </Card.Body>
+            </Card>
+          </Link>
+        )) : <h3>Loading!</h3>}
+      </div>
     </>
   );
 

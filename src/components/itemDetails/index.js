@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link, Route } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/fetch';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import './itemDetails.scss';
 
 
 export default function ItemDetails(props) {
   console.log(props);
 
   const { storeId, itemId } = useParams();
-  const { request, response, error, isLoading } = useFetch();
+  const { request, response } = useFetch();
   const [itemDetails, setItemDetails] = useState([]);
-  const [show, setShow] = useState(false)
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items/${itemId}`;
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const getItem = React.useCallback(() => {
     const requestbody = {
@@ -29,7 +26,7 @@ export default function ItemDetails(props) {
   useEffect(() => {
     getItem();
    
-  }, []);
+  }, [getItem]);
 
   useEffect(() => {
     setItemDetails(response);
@@ -52,10 +49,9 @@ export default function ItemDetails(props) {
   })
 
   return (
+    <div className="details-wrapper">
     <Modal.Dialog
     {...props}
-    show={show}
-    onHide={handleClose}
     size="lg"
     aria-labelledby={itemDetails.name}
     centered
@@ -92,5 +88,6 @@ export default function ItemDetails(props) {
         </Modal.Footer>
       </form>
     </Modal.Dialog>
+    </div>
   )
 }
