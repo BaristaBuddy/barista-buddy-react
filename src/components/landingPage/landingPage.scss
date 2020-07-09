@@ -1,0 +1,36 @@
+.landing-page {
+  height: 100vh;
+  width: 100vw;
+  background-color: #280f00;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .login-wrapper {
+    text-align: center;
+    width: 100%;
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    .login {
+      color: #fff;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      *{
+        margin: 0.25rem;
+      }
+      input {
+        justify-self: flex-end;
+      }
+    }
+    p {
+      color: #fff;
+      padding: 1rem;
+    }
+  }
+}
