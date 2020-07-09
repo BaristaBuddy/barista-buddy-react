@@ -21,6 +21,7 @@ const Login = () => {
         console.log("logging out use");
         e.preventDefault();
         logout();
+        history.push("/")
         
     }
 
