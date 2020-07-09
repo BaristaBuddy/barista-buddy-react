@@ -24,26 +24,28 @@ function App() {
         </div>
       </Link>
       <main>
-        <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route path="/stores">
-            <Stores />
-          </Route>
-          <Route path="/menu/:storeId">
-            <Menu />
-          </Route>
-          <Route path="/cart">
-            <ShoppingCart />
-          </Route>
-          <Route path="/register">
-            <SignUpForm />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-        </Switch>
+        <div className="main-wrapper">
+          <Switch>
+            <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route path="/stores">
+              <Stores />
+            </Route>
+            <Route path="/menu/:storeId">
+              <Menu />
+            </Route>
+            <Route path="/cart">
+              <ShoppingCart />
+            </Route>
+            <Route path="/register">
+              <SignUpForm />
+            </Route>
+            <Route path="/about">
+              <About />
+            </Route>
+          </Switch>
+        </div>
       </main>
       <Footer />
     </>
