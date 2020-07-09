@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useAuth from '../../contexts/auth';
 import Button from 'react-bootstrap/Button';
 import { useHistory } from "react-router-dom";
@@ -25,6 +25,9 @@ const Login = () => {
     }
 
     console.log(user);
+    useEffect(()=>{
+        if (user) history.push("/stores");
+    })
 
     
     if (user) {
