@@ -18,9 +18,9 @@
   }
 
   > .modal {
-      background: #fff;
+      background: #f2f2f2;
       color: #000;
-      box-sizing: border-box;
+      // box-sizing: border-box;
       display: flex;
       flex-direction: column;
       // height: 400px;
@@ -34,12 +34,13 @@
       overflow: auto; /* Enable scroll if needed */
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
       animation-name: animatetop;
-      animation-duration: 0.4s;
+      animation-duration: 0.5s;
+      border-radius: 20px;
 
       .modal-header {
         padding-left: 5px;
           align-items: center;
-          background: #ccc;
+          background: #f2f2f2;
           border-bottom: 1px solid #777;
           display: flex;
           font-size: 1rem;
