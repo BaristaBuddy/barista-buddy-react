@@ -28,6 +28,7 @@ export class OrdersProvider extends React.Component {
       addNew: this.addNew,
       removeItem: this.removeItem,
       CreateOrder: this.CreateOrder,
+      GetTotalPrice: this.GetTotalPrice,
     };
   }
 
@@ -53,17 +54,18 @@ export class OrdersProvider extends React.Component {
     });
   }
 
-  addNew = (item, user) => {
+  addNew = (item) => {
 
     if (this.state.cart == null || this.state.cart.length <= 0) {
-      this.state.CreateOrder(item.storeId, user)
+      //this.state.CreateOrder(item.storeId)
     };
     let newList = this.state.cart;
-
+    console.log(item);
     const newItem = {
       count: 1,
       id: item.id,
       name: item.name,
+      price: item.price,
     }
 
     const filtered = newList.filter(i => {
@@ -79,6 +81,7 @@ export class OrdersProvider extends React.Component {
     }
 
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
+    console.log(this.GetTotalPrice())
   }
 
   removeItem = (index) => {
@@ -95,11 +98,18 @@ export class OrdersProvider extends React.Component {
     if (this.state.cart.length > 0) {
 
       this.state.cart.forEach(item => {
-        count += item.count;
+        count += parseInt(item.count);
       });
     }
 
     return count;
+  }
+  GetTotalPrice = () =>{
+    let sum = 0;
+    this.state.cart.forEach(item => {
+      sum += item.price * item.count;
+    });
+    return sum;
   }
 
   render() {
