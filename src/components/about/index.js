@@ -14,7 +14,7 @@ export default function About() {
         <Row className='about-row'>
           <Col>
             <div>
-              <img className="matthew-image" src={matthew} />
+              <img className="matthew-image" src={matthew} alt="Matthew the developer"/>
             </div>
           </Col>
           <Col>
@@ -33,14 +33,14 @@ export default function About() {
           </Col>
           <Col>
             <div>
-              <img className="matthew-image" src={brennan} />
+              <img className="matthew-image" src={brennan} alt="Brennan the developer"/>
             </div>
           </Col>
         </Row>
         <Row className='about-row'>
           <Col>
           <div>
-            <img className="matthew-image" src={sihem} />
+            <img className="matthew-image" src={sihem} alt="Sihem the developer"/>
         </div>
         </Col>
           <Col>
@@ -59,7 +59,7 @@ export default function About() {
           </Col>
           <Col>
             <div>
-              <img className="matthew-image" src={james} />
+              <img className="matthew-image" src={james} alt="James the developer"/>
             </div>
           </Col>
         </Row>

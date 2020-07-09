@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/fetch.js';
 import { useParams, Link, Route } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
-import Modal from '../modal';
+// import Modal from '../modal';
 import useOrders from '../../contexts/orders';
 import ItemDetails from './../itemDetails';
 
 export default function Menu(props) {
 
   const { storeId } = useParams();
-  const { request, response, error, isLoading } = useFetch();
+  const { request, response } = useFetch();
   const [menu, setMenu] = useState([]);
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items`;
 

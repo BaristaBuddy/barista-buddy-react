@@ -8,7 +8,7 @@ export default function Stores() {
   //const todoAPI = 'https://deltav-todo.azurewebsites.net/api/v1/todos';
   const BBurl = 'https://baristabuddyapi.azurewebsites.net/api/stores'
   const [storeList, setStoreList] = useState();
-  const { request, response, error, isLoading } = useFetch();
+  const { request, response } = useFetch();
 
 
 
@@ -42,10 +42,7 @@ export default function Stores() {
       <div className="card-container">
         {storeList != null ? storeList.map((store) => (
           <Link to={{
-            pathname: `/menu/${store.id}`,
-            // state: {
-            //   entry: store.id,
-            // }
+            pathname: `/menu/${store.id}`
           }}>
             <Card key={store.id}>
               <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
