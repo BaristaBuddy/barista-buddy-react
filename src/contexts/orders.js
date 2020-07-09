@@ -146,7 +146,11 @@ export class OrdersProvider extends React.Component {
     const item = this.state.cart[index];
     const message = await this.state.DeleteItem(item);
     console.log(message);
+    if(cartList[index].count === 1){
     cartList.splice(index, 1);
+    } else {
+      cartList[index].count--; 
+    }
 
     if(cartList.length === 0) {
      await  this.state.Reset();
