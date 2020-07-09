@@ -23,7 +23,7 @@ function App() {
       <Link to="/cart">
         <div testId="cart" className="cart-tab">
           <FontAwesomeIcon icon={faShoppingCart} />
-          <h3>{cartCount}</h3>
+          <h3 style={{color: "black"}}>{cartCount}</h3>
         </div>
       </Link>
       <main>
