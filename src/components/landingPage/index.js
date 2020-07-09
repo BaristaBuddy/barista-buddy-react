@@ -10,8 +10,8 @@ import bbBrown from './../../assets/barista-buddy-brown.png';
 export default function LandingPage() {
 
   const [toggle, setToggle] = useState(false);
-  const [formData, setFormData] = useState({});
-  const { request, response, error, isLoading } = useFetch();
+  // const [formData, setFormData] = useState({});
+  const { request } = useFetch();
 
   const usersAPI = 'https://baristabuddyapi.azurewebsites.net/api/Users/register';
 
@@ -22,16 +22,14 @@ export default function LandingPage() {
       options: { method: "post", body: JSON.stringify(data) }
     }
     request(requestBody);
-    console.log(requestBody.options);
-  }, [request, formData, response]);
+  }, [request]);
 
   const toggleModal = () => {
     setToggle(!toggle);
   }
   
   function getFormData(data) {
-  console.log(data);
-    setFormData(data);
+    // setFormData(data);
     register(data);
     toggleModal();
   }

@@ -36,42 +36,48 @@ export default class SignUpForm extends React.Component {
     return (
       <form onSubmit={this.submitHandler}>
       <h1>Sign up for Barista Buddy!</h1>
-      <p>First name:</p>
+      <label>First name
       <input
         type='text'
         name='firstName'
         onChange={this.changeHandler}
       />
-       <p>Last name:</p>
+      </label>
+       <label>Last name
       <input
         type='text'
         name='lastName'
         onChange={this.changeHandler}
       />
-       <p>Enter your password:</p>
+      </label>
+       <label>Password
       <input
         type='password'
         name='password'
         onChange={this.changeHandler}
       />
-      <p>Phone Number:</p>
+      </label>
+      <label>Phone Number
       <input
         type='text'
         name='phoneNumber'
         onChange={this.changeHandler}
       />
-      <p>Email:</p>
+      </label>
+      <label>Email
       <input
         type='email'
         name='email'
         onChange={this.changeHandler}
       />
-       <p>Birthdate:</p>
+      </label>
+       <label>Date of Birth
       <input
         type='date'
         name='birthDate'
         onChange={this.changeHandler}
       />
+      </label>
       <button type='submit'>
       Register!
       </button>
