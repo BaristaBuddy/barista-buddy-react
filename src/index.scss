@@ -48,9 +48,9 @@ body {
 
 a {
   text-decoration: none;
-  z-index: 9999;
   .cart-tab {
     position: fixed;
+    z-index: 100;
     right: 0;
     top: 40vh;
     background: #c9641c;
