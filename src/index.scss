@@ -33,15 +33,24 @@ body {
 .card {
   margin: 0 auto;
   z-index: 50;
-  margin-top: 15px; 
-  min-width: 15rem;
+  margin: 15px 5px;
+  min-width: 20rem;
+  height: 500px;
+  text-decoration: none;
+  color: #000;
+  &:hover {
+    text-decoration: none;
+  }
+  p {
+    margin: 0.2rem;
+  }
 }
 
 a {
   text-decoration: none;
-  z-index: 9999;
   .cart-tab {
     position: fixed;
+    z-index: 100;
     right: 0;
     top: 40vh;
     background: #c9641c;
@@ -62,10 +71,10 @@ a {
   }
 }
 
-@media(min-width: 520px){
+@media(min-width: 520px) {
   .card-img-top {
     width: 100%;
-    height: 25vw;
+    height: 20vw;
     object-fit: cover;
   }
 }

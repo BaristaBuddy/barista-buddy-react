@@ -1,5 +1,6 @@
 import React from 'react';
 import useAuth from '../../contexts/auth';
+import Button from 'react-bootstrap/Button';
 
 const Login = () => {
 
@@ -25,16 +26,22 @@ const Login = () => {
             <div className="login">
                 <h3>Welcome back, {user.username.split(" ")[0]}!</h3>
                 <form onSubmit={logoutSubmit}>
-                    <button>Log Out</button>
+                    <Button>Log Out</Button>
                 </form>
             </div>)
     }
 
     return (
         <form onSubmit={handleSubmit} className="login">
+            <label>
+              Email
             <input placeholder="Username" name="username" />
+            </label>
+            <label>
+              password
             <input placeholder="Password" type="password" name="password" />
-            <button>Login</button>
+            </label>
+            <Button>Login</Button>
         </form>
     )
 }

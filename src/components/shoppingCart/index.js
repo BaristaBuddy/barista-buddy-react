@@ -7,12 +7,15 @@ function ShoppingCart() {
 
   const cartlist = cart.map((i, index) => {
     return (
+      <>
+      <h2>Your Cart</h2>
       <tr key={index}>
         <td>{i.id}</td>
         <td>{i.name}</td>
         <td>{'x' + i.count}</td>
     <td>{<Removebutton item={i} />} </td>
       </tr>
+      </>
     )
   })
 

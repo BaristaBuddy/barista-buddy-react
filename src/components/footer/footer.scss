@@ -10,15 +10,29 @@ footer {
   flex-wrap: wrap;
   color: #fff;;
   align-items: center;
+  
   .theme-buttons {
+    display: flex;
+    justify-content: space-around;
     button {
       margin: 0.25rem;
       font-size: 0.75rem;
       color: #fff;
-    }
+      }
+  }  
+      .foot-content {
+        display: flex;
+        justify-content: space-around;
+      a {
+        text-decoration: none;
+        color: #fff;
+      }
   }
-  a {
-    text-decoration: none;
-    color: #fff;
+}
+
+@media(min-width: 520px) {
+  footer {
+    display: flex;
+    flex-wrap: nowrap;
   }
 }
