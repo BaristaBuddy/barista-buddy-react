@@ -4,7 +4,7 @@ import useAuth from '../../contexts/auth';
 import { useHistory } from "react-router-dom";
 
 function ShoppingCart() {
-  
+
   const { cart, removeItem, Reset, GetTotalPrice } = useOrders();
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
@@ -16,17 +16,14 @@ function ShoppingCart() {
   const cartlist = cart.map((i, index) => {
     return (
       <>
-      <h2>Your Cart</h2>
-      <tr key={index}>
-        <td>{i.id}</td>
-        <td>`{i.name}  `</td>
-        <td>{'x' + i.count}</td>
-        <td>{formatter.format(i.price * i.count)}</td>
-    <td>{<Removebutton item={index} text="Remove Item" func={removeItem} />} </td>
-      </tr>
-      <Removebutton text="Delete Order" func={Reset} />
-    <h3>Total Price: {formatter.format(GetTotalPrice())}</h3>
-    <Removebutton text="Back To Stores" func={history.push} item="/stores"/>
+        <h2>Your Cart</h2>
+        <tr key={index}>
+          <td>{i.id}</td>
+          <td>`{i.name}  `</td>
+          <td>{'x' + i.count}</td>
+          <td>{formatter.format(i.price * i.count)}</td>
+          <td>{<Removebutton item={index} text="Remove Item" func={removeItem} />} </td>
+        </tr>
       </>
     )
   })
@@ -34,7 +31,7 @@ function ShoppingCart() {
   if (cart.length > 0) {
     return (
       <div style={
-        {padding:'15px'}
+        { padding: '15px' }
       }>
         <table className='c'>
           <tr className='thead'>
@@ -45,21 +42,29 @@ function ShoppingCart() {
           </tr>
           {cartlist}
         </table>
+        <Removebutton text="Delete Order" func={Reset} />
+        <h3>Total Price: {formatter.format(GetTotalPrice())}</h3>
+        <Removebutton text="Go Back" func={history.goBack} />
       </div>
     )
 
   } else {
-    return <p className='c'>cart is empty</p>
+    return (
+      <>
+        <p className='c'>cart is empty</p>
+        <Removebutton text="Go Back" func={history.goBack} />
+      </>
+    )
   }
 }
 
 function Removebutton(props) {
-  if(props.item !== null){
-  return (
-    <button onClick={() => props.func(props.item)}>
-      {props.text}
-    </button>
-  )
+  if (props.item !== null) {
+    return (
+      <button onClick={() => props.func(props.item)}>
+        {props.text}
+      </button>
+    )
   } else {
     return (
       <button onClick={() => props.func()}>
