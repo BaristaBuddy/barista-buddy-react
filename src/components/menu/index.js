@@ -5,7 +5,7 @@ import Card from 'react-bootstrap/Card';
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 // import Modal from '../modal';
-import useOrders from '../../contexts/orders';
+// import useOrders from '../../contexts/orders';
 import ItemDetails from './../itemDetails';
 
 export default function Menu(props) {
@@ -55,7 +55,9 @@ export default function Menu(props) {
           <ItemDetails />
         </Route>
         {menu ? menu.map((item) => (
-          <Link to={`/menu/${storeId}/${item.itemId}`}>
+          <Link to={`/menu/${storeId}/${item.itemId}`} 
+          style={{zIndex:1}}
+          >
             <Card key={item.itemId}>
               <Card.Img variant="top" src={item.imageUrl} />
               <Card.Body>
@@ -66,7 +68,7 @@ export default function Menu(props) {
                   Ingredients: {item.ingredients}
                 Price: {formatter.format(item.price)}
                 </Card.Text>
-                <Addbutton item={item} />
+                {/* <Addbutton item={item} /> */}
               </Card.Body>
             </Card>
           </Link>
@@ -76,13 +78,13 @@ export default function Menu(props) {
   )
 }
 
-function Addbutton(props) {
+// function Addbutton(props) {
 
-  const { addNew } = useOrders();
+//   const { addNew } = useOrders();
 
-  return (
-    <button onClick={() => addNew(props.item)}>
-      add to cart
-    </button>
-  )
-}
+//   return (
+//     <button onClick={() => addNew(props.item)}>
+//       add to cart
+//     </button>
+//   )
+// }
