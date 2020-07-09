@@ -29,6 +29,7 @@ export class OrdersProvider extends React.Component {
       removeItem: this.removeItem,
       CreateOrder: this.CreateOrder,
       CreateItem: this.CreateItem,
+      UpdateItemQuantity: this.UpdateItemQuantity,
       GetTotalPrice: this.GetTotalPrice,
     };
   }
@@ -68,8 +69,22 @@ export class OrdersProvider extends React.Component {
       method: 'post',
       body: JSON.stringify(newOrderItem),
       headers: { 'Content-Type': 'application/json' }
-    }
+    };
     await fetch(itemUrl, requestItem);
+  }
+  UpdateItemQuantity = async (item) => {
+    console.log("updating quantity!");
+    const updateItemUrl = `${this.state.apiUrl}order/item/${parseInt(item.id)}`;
+    const updatedItem = {
+      Id: item.id,
+      quantity: item.count,
+    };
+    let requestUpdate = {
+      method: 'put',
+      body: JSON.stringify(updatedItem),
+      headers: { 'Content-Type': 'application/json' }
+    };
+    await fetch(updateItemUrl, requestUpdate);
   }
 
   addNew = async (item) => {
@@ -77,21 +92,22 @@ export class OrdersProvider extends React.Component {
       await this.state.CreateOrder(item.storeId)
     };
     let newList = this.state.cart;
-    console.log(item);
+    //console.log(item);
     const newItem = {
       count: 1,
-      id: item.id,
+      id: item.itemId,
       name: item.name,
       price: item.price,
     }
 
     const filtered = newList.filter(i => {
-      return i.id === item.id;
+      return i.id === item.itemId;
     });
 
     if (filtered.length > 0) {
-      const pos = newList.map(i => { return i.id; }).indexOf(item.id);
+      const pos = newList.map(i => { return i.id; }).indexOf(item.itemId);
       newList[pos].count += 1;
+      this.state.UpdateItemQuantity(newList[pos]);
     } else {
       newList.push(newItem);
       this.setState({ currentStore: item.storeId });
