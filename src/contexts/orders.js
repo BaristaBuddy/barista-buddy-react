@@ -22,7 +22,7 @@ export class OrdersProvider extends React.Component {
       cart: [],
       currentStore: null,
       cartCount: 0,
-      apiUrl: 'https://localhost:5001/api/orders/',
+      apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/orders/',
       user: props.user,
 
       addNew: this.addNew,
@@ -47,7 +47,7 @@ export class OrdersProvider extends React.Component {
       }
       
     }
-    //console.log(cookieToken);
+    console.log(requestOrder);
     fetch(this.state.apiUrl, requestOrder.options).then(response =>{
       console.log(response);
     });
@@ -75,6 +75,7 @@ export class OrdersProvider extends React.Component {
       newList[pos].count += 1;
     } else {
       newList.push(newItem);
+      this.setState({currentStore: item.storeId});
     }
 
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
