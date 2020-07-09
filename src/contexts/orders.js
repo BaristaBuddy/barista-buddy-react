@@ -35,7 +35,7 @@ export class OrdersProvider extends React.Component {
  
 
 
-  CreateOrder = (storeId, user) => {
+  CreateOrder =  async (storeId, user) => {
     let data = {
       storeId: storeId,
     }
@@ -48,10 +48,11 @@ export class OrdersProvider extends React.Component {
       }
       
     }
-    console.log(requestOrder);
-    fetch(this.state.apiUrl, requestOrder.options).then(response =>{
-      console.log(response);
-    });
+    //console.log(requestOrder);
+    const response = await fetch(this.state.apiUrl, requestOrder.options);
+    const responseJSON = await response.json();
+    const orderId = responseJSON.id;
+    this.setState(orderId);
   }
 
   addNew = (item) => {
