@@ -8,6 +8,7 @@ const Login = () => {
     const { user, login, logout} = useAuth();
     let history = useHistory();
     const handleSubmit = e => {
+        console.log("logging in");
         e.preventDefault();
 
         const { username, password } = e.target.elements;
@@ -31,7 +32,7 @@ const Login = () => {
             <div className="login">
                 <h3>Welcome back, {user.username.split(" ")[0]}!</h3>
                 <form onSubmit={logoutSubmit}>
-                    <Button onClick={logoutSubmit} >Log Out</Button>
+                    <Button type="submit" >Log Out</Button>
                 </form>
             </div>)
     }
@@ -46,7 +47,7 @@ const Login = () => {
               password
             <input placeholder="Password" type="password" name="password" />
             </label>
-            <Button>Login</Button>
+            <Button type="submit">Login</Button>
         </form>
     )
 }
