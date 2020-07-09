@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/fetch.js';
-import { useParams, Link, Route, useLocation, useHistory } from 'react-router-dom';
+import { useParams, Link, Route, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
@@ -12,7 +12,6 @@ import ItemDetails from './../itemDetails';
 export default function Menu(props) {
 
   const { storeId } = useParams();
-  const location = useLocation();
   const history = useHistory();
   const { request, response } = useFetch();
   const [menu, setMenu] = useState([]);

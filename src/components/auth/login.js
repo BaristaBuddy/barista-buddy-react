@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useAuth from '../../contexts/auth';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
 
     const { user, login, logout} = useAuth();
+    let history = useHistory();
     const handleSubmit = e => {
+        console.log("logging in");
         e.preventDefault();
 
         const { username, password } = e.target.elements;
 
-        login(username.value, password.value);
+       const result = login(username.value, password.value);
+       if (result) history.push("/stores");
     }
 
     const logoutSubmit = e => {
+        console.log("logging out use");
         e.preventDefault();
         logout();
+        
     }
 
     console.log(user);
+    useEffect(()=>{
+        if (user) history.push("/stores");
+    })
 
     
     if (user) {
@@ -26,7 +35,7 @@ const Login = () => {
             <div className="login">
                 <h3>Welcome back, {user.username.split(" ")[0]}!</h3>
                 <form onSubmit={logoutSubmit}>
-                    <Button>Log Out</Button>
+                    <Button type="submit" >Log Out</Button>
                 </form>
             </div>)
     }
@@ -41,7 +50,7 @@ const Login = () => {
               password
             <input placeholder="Password" type="password" name="password" />
             </label>
-            <Button>Login</Button>
+            <Button type="submit">Login</Button>
         </form>
     )
 }
