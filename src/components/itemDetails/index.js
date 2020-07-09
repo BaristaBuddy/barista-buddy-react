@@ -13,6 +13,7 @@ export default function ItemDetails(props) {
   const { request, response } = useFetch();
   const [itemDetails, setItemDetails] = useState([]);
   const { onClose } = props;
+  const { addNew } = useOrders();
 
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items/${itemId}`;
 
@@ -49,33 +50,42 @@ export default function ItemDetails(props) {
     currency: 'USD',
     minimumFractionDigits: 2
   })
+  function handleAdd() {
+    addNew(itemDetails);
+    onClose();
+  }
 
 
   return (
     <div className="details-wrapper">
-        <Modal title="Item Details" onClose={onClose}>
-          <form >
-            {/* <img src={itemDetails.imageUrl} alt={itemDetails.name} /> */}
-            <h2>{itemDetails.name}</h2>
-            <p>{itemDetails.ingredients}</p>
-            {/* {itemDetails.itemModifiers.map((itemModifier) => (
+      <Modal title="Item Details" onClose={onClose}>
+        <form >
+          {/* <img src={itemDetails.imageUrl} alt={itemDetails.name} /> */}
+          <h2>{itemDetails.name}</h2>
+          <p>{itemDetails.ingredients}</p>
+          {/* {itemDetails.itemModifiers.map((itemModifier) => (
             <label>
               {itemModifier.modifierName}
               <input type="checkbox" name="Modifier" value={itemModifier.modifierName} />
               {itemModifier.additionalCost}
             </label>
           ))} */}
-            {console.log(itemDetails.itemModifiers)}
-            <p>{formatter.format(itemDetails.price)}</p>
-            <Button
-              variant="secondary"
-              onClick={onClose}
-            >
-              Close
+          {console.log(itemDetails.itemModifiers)}
+          <p>{formatter.format(itemDetails.price)}</p>
+          <Button
+            variant="secondary"
+            onClick={onClose}
+          >
+            Close
           </Button>
-            <Addbutton item={itemDetails} onClick={onClose} />
-          </form>
-        </Modal>
+          <Button
+            variant="secondary"
+            onClick={handleAdd}
+          >
+            Add To Cart
+          </Button>
+        </form>
+      </Modal>
     </div>
   )
 }
