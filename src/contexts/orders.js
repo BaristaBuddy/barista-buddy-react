@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
-import cookie from 'react-cookies';
-import AuthContext from './auth'
+import {AuthContext} from './auth'
 
 
 
@@ -14,6 +13,7 @@ export default function useOrders() {
 }
 
 export class OrdersProvider extends React.Component {
+  static contextType = AuthContext;
   constructor(props) {
     super(props);
 
@@ -32,19 +32,19 @@ export class OrdersProvider extends React.Component {
     };
   }
 
-  static contextType = AuthContext;
+ 
 
 
   CreateOrder = (storeId, user) => {
     let data = {
       storeId: storeId,
     }
-    const cookieToken = cookie.load('auth');
+
     let requestOrder = {
       options: {
         method: 'post', 
         body: JSON.stringify(data),
-        header: { 'Content-Type': 'application/json', Authorization: `Bearer ${cookieToken}` }
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.context.token}` }
       }
       
     }
@@ -55,9 +55,8 @@ export class OrdersProvider extends React.Component {
   }
 
   addNew = (item) => {
-
     if (this.state.cart == null || this.state.cart.length <= 0) {
-      //this.state.CreateOrder(item.storeId)
+      this.state.CreateOrder(item.storeId)
     };
     let newList = this.state.cart;
     console.log(item);
@@ -81,7 +80,6 @@ export class OrdersProvider extends React.Component {
     }
 
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
-    console.log(this.GetTotalPrice())
   }
 
   removeItem = (index) => {

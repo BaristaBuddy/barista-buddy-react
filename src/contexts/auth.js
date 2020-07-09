@@ -48,14 +48,18 @@ export class AuthProvider extends React.Component {
     }
 
     logout = () => {
-        this.setState({ user: null, permissions: [] });
-        cookie.remove('auth');
+        this.setState({token: null, user: null, permissions: [] });
+        cookie.remove('auth', {path: "/"});
     }
 
     processToken(token, user) {
         try {
             const payload = jwt.decode(token);
             if (payload) {
+                if(payload.exp*1000 < Date.now()) {
+                    this.logout();
+                    return;
+                }
                 if (true) {
                     user = {
                         //id: payload['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'],
@@ -66,10 +70,11 @@ export class AuthProvider extends React.Component {
                 }
                 console.log(user);
                 this.setState({
+                    token,
                     user,
                     permissions: payload.permissions || [],
                 });
-                cookie.save('auth', token);
+                cookie.save('auth', token, {path: "/"});
                 return true;
             }
         } catch(e) {
