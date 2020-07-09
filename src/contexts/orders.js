@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import {AuthContext} from './auth'
+import { AuthContext } from './auth'
 
 
 
@@ -22,42 +22,59 @@ export class OrdersProvider extends React.Component {
       cart: [],
       currentStore: null,
       cartCount: 0,
-      apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/orders/',
+      apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/',
       user: props.user,
 
       addNew: this.addNew,
       removeItem: this.removeItem,
       CreateOrder: this.CreateOrder,
+      CreateItem: this.CreateItem,
       GetTotalPrice: this.GetTotalPrice,
     };
   }
 
- 
 
 
-  CreateOrder =  async (storeId, user) => {
+
+  CreateOrder = async (storeId) => {
+    console.log("creating new order!");
     let data = {
       storeId: storeId,
     }
-
+    const orderUrl = `${this.state.apiUrl}orders/`
     let requestOrder = {
-      options: {
-        method: 'post', 
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.context.token}` }
-      }
-      
+      method: 'post',
+      body: JSON.stringify(data),
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.context.token}` }
     }
+
     //console.log(requestOrder);
-    const response = await fetch(this.state.apiUrl, requestOrder.options);
+    const response = await fetch(orderUrl, requestOrder);
     const responseJSON = await response.json();
     const orderId = responseJSON.id;
-    this.setState(orderId);
+    this.setState({ orderId });
   }
 
-  addNew = (item) => {
+  CreateItem = async (item) => {
+    console.log("creating new item!");
+    const itemUrl = `${this.state.apiUrl}order/item/`
+    const newOrderItem = {
+      orderId: this.state.orderId,
+      itemId: item.itemId,
+      quantity: 1,
+    }
+    //console.log(newOrderItem);
+    let requestItem = {
+      method: 'post',
+      body: JSON.stringify(newOrderItem),
+      headers: { 'Content-Type': 'application/json' }
+    }
+    await fetch(itemUrl, requestItem);
+  }
+
+  addNew = async (item) => {
     if (this.state.cart == null || this.state.cart.length <= 0) {
-      this.state.CreateOrder(item.storeId)
+      await this.state.CreateOrder(item.storeId)
     };
     let newList = this.state.cart;
     console.log(item);
@@ -77,7 +94,8 @@ export class OrdersProvider extends React.Component {
       newList[pos].count += 1;
     } else {
       newList.push(newItem);
-      this.setState({currentStore: item.storeId});
+      this.setState({ currentStore: item.storeId });
+      this.CreateItem(item);
     }
 
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
@@ -103,7 +121,7 @@ export class OrdersProvider extends React.Component {
 
     return count;
   }
-  GetTotalPrice = () =>{
+  GetTotalPrice = () => {
     let sum = 0;
     this.state.cart.forEach(item => {
       sum += item.price * item.count;
