@@ -28,7 +28,7 @@ const Login = () => {
     console.log(user);
     useEffect(()=>{
         if (user) history.push("/stores");
-    },[]);
+    });
 
     
     if (user) {
