@@ -32,6 +32,7 @@ export class OrdersProvider extends React.Component {
       UpdateItemQuantity: this.UpdateItemQuantity,
       GetTotalPrice: this.GetTotalPrice,
       DeleteItem: this.DeleteItem,
+      Reset: this.Reset,
     };
   }
 
@@ -102,6 +103,10 @@ export class OrdersProvider extends React.Component {
     return (responseJSON.id !== null ? "Item Deleted!" : "Delete Failed!");
   }
 
+  Reset = async () =>{
+   await this.setState({orderId: null, currentStore: null });
+  }
+
   addNew = async (item) => {
     if (this.state.cart == null || this.state.cart.length <= 0) {
       await this.state.CreateOrder(item.storeId)
@@ -141,7 +146,11 @@ export class OrdersProvider extends React.Component {
     console.log(message);
     cartList.splice(index, 1);
 
-    this.setState({ ...this.state, cart: cartList, cartCount: this.getCartCount() });
+    await this.setState({ ...this.state, cart: cartList, cartCount: this.getCartCount() });
+    if(cartList.length === 0) {
+     await  this.state.Reset();
+      console.log("Removing Order!");
+    }
   }
 
   getCartCount = () => {
