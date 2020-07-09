@@ -19,7 +19,7 @@ function App() {
     <>
       <Header />
       <Link to="/cart">
-        <div className="cart-tab">
+        <div testId="cart" className="cart-tab">
           <FontAwesomeIcon icon={faShoppingCart} />
         </div>
       </Link>
