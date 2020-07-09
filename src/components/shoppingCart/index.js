@@ -15,6 +15,7 @@ function ShoppingCart() {
         <td>{'x' + i.count}</td>
     <td>{<Removebutton item={i} text="Remove Item" func={removeItem} cart={cart} />} </td>
       </tr>
+      <Removebutton text="Delete Order" func={Reset} cart={cart} />
       </>
     )
   })
