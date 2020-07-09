@@ -104,7 +104,7 @@ export class OrdersProvider extends React.Component {
   }
 
   Reset = async () =>{
-   await this.setState({orderId: null, currentStore: null });
+   await this.setState({orderId: null, currentStore: null,  cart: [], cartCount: 0 });
   }
 
   addNew = async (item) => {
@@ -146,10 +146,11 @@ export class OrdersProvider extends React.Component {
     console.log(message);
     cartList.splice(index, 1);
 
-    await this.setState({ ...this.state, cart: cartList, cartCount: this.getCartCount() });
     if(cartList.length === 0) {
      await  this.state.Reset();
       console.log("Removing Order!");
+    } else {
+      await this.setState({ ...this.state, cart: cartList, cartCount: this.getCartCount() });
     }
   }
 
