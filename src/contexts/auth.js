@@ -39,7 +39,7 @@ export class AuthProvider extends React.Component {
 
         if (result.ok) {
             if(this.processToken(body.token, body)){
-                return;
+                return true;
             }
         }
 

@@ -1,21 +1,26 @@
 import React from 'react';
 import useAuth from '../../contexts/auth';
 import Button from 'react-bootstrap/Button';
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
 
     const { user, login, logout} = useAuth();
+    let history = useHistory();
     const handleSubmit = e => {
         e.preventDefault();
 
         const { username, password } = e.target.elements;
 
-        login(username.value, password.value);
+       const result = login(username.value, password.value);
+       if (result) history.push("/stores");
     }
 
     const logoutSubmit = e => {
+        console.log("logging out use");
         e.preventDefault();
         logout();
+        
     }
 
     console.log(user);
@@ -26,7 +31,7 @@ const Login = () => {
             <div className="login">
                 <h3>Welcome back, {user.username.split(" ")[0]}!</h3>
                 <form onSubmit={logoutSubmit}>
-                    <Button>Log Out</Button>
+                    <Button onClick={logoutSubmit} >Log Out</Button>
                 </form>
             </div>)
     }
