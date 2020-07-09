@@ -24,15 +24,17 @@ export class OrdersProvider extends React.Component {
       cartCount: 0,
       apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/',
       user: props.user,
-
+      //Context Methods
       addNew: this.addNew,
       removeItem: this.removeItem,
+      Reset: this.Reset,
+      //API METHODS
       CreateOrder: this.CreateOrder,
       CreateItem: this.CreateItem,
       UpdateItemQuantity: this.UpdateItemQuantity,
       GetTotalPrice: this.GetTotalPrice,
       DeleteItem: this.DeleteItem,
-      Reset: this.Reset,
+      
     };
   }
 
