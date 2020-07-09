@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import AuthContext from '../contexts/auth';
+import cookie from 'react-cookies';
+import AuthContext from './auth'
+
 
 
 // const ordersAPI = 'https://baristabuddyapi.azurewebsites.net/api/orders/';
 
 export const OrdersContext = React.createContext();
+
 
 export default function useOrders() {
   return useContext(OrdersContext);
@@ -19,8 +22,8 @@ export class OrdersProvider extends React.Component {
       cart: [],
       currentStore: null,
       cartCount: 0,
-      url: 'https://localhost:5001/api/orders/',
-      user: AuthContext,
+      apiUrl: 'https://localhost:5001/api/orders/',
+      user: props.user,
 
       addNew: this.addNew,
       removeItem: this.removeItem,
@@ -28,25 +31,33 @@ export class OrdersProvider extends React.Component {
     };
   }
 
+  static contextType = AuthContext;
 
-  CreateOrder = async (storeId) => {
+
+  CreateOrder = (storeId, user) => {
     let data = {
       storeId: storeId,
     }
-    let request = {
-      url: this.state.url,
+    const cookieToken = cookie.load('auth');
+    let requestOrder = {
       options: {
-        method: "post", 
+        method: 'post', 
         body: JSON.stringify(data),
-        header: { 'Content-Type': 'application/json', Authorization: `Bearer ${this.state.user.token}` }
+        header: { 'Content-Type': 'application/json', Authorization: `Bearer ${cookieToken}` }
       }
+      
     }
-    await fetch(request);
+    //console.log(cookieToken);
+    fetch(this.state.apiUrl, requestOrder.options).then(response =>{
+      console.log(response);
+    });
   }
 
-  addNew = (item) => {
+  addNew = (item, user) => {
 
-    if (this.state.cart == null) this.state.CreateOrder(item.storeId);
+    if (this.state.cart == null || this.state.cart.length <= 0) {
+      this.state.CreateOrder(item.storeId, user)
+    };
     let newList = this.state.cart;
 
     const newItem = {

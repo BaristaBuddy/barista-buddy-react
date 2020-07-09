@@ -8,12 +8,14 @@ import Modal from '../modal';
 import useOrders from '../../contexts/orders';
 import ItemDetails from './../itemDetails';
 
+
 export default function Menu(props) {
 
   const { storeId } = useParams();
   const { request, response, error, isLoading } = useFetch();
   const [menu, setMenu] = useState([]);
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items`;
+ 
 
 
 
@@ -54,7 +56,7 @@ export default function Menu(props) {
         <ItemDetails />
       </Route>
       {menu ? menu.map((item) => (
-        <Link to={`/menu/${storeId}/${item.itemId}`}>
+        //<Link to={`/menu/${storeId}/${item.itemId}`}>
           <Card key={item.itemId} style={{ width: '18rem' }}>
             <Card.Img variant="top" src={item.imageUrl} />
             <Card.Body>
@@ -68,7 +70,7 @@ export default function Menu(props) {
               <Addbutton item={item} />
             </Card.Body>
           </Card>
-        </Link>
+        //</Link>
 
       )) : <h3>Loading!</h3>}
     </>
