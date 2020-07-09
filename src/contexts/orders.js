@@ -31,6 +31,7 @@ export class OrdersProvider extends React.Component {
       CreateItem: this.CreateItem,
       UpdateItemQuantity: this.UpdateItemQuantity,
       GetTotalPrice: this.GetTotalPrice,
+      DeleteItem: this.DeleteItem,
     };
   }
 
@@ -93,6 +94,14 @@ export class OrdersProvider extends React.Component {
     return (response ? "Item Updated" : "Update Failed");
   }
 
+  DeleteItem = async (item) =>{
+    console.log("Deleting item!");
+    const deleteUrl = `${this.state.apiUrl}order/item/${parseInt(item.orderItemId)}`;
+    const response = await fetch(deleteUrl);
+    const responseJSON = await response.json();
+    return (responseJSON.id !== null ? "Item Deleted!" : "Delete Failed!");
+  }
+
   addNew = async (item) => {
     if (this.state.cart == null || this.state.cart.length <= 0) {
       await this.state.CreateOrder(item.storeId)
@@ -125,9 +134,11 @@ export class OrdersProvider extends React.Component {
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
   }
 
-  removeItem = (index) => {
+  removeItem = async (index) => {
     const cartList = this.state.cart;
-
+    const item = this.state.cart[index];
+    const message = await this.state.DeleteItem(item);
+    console.log(message);
     cartList.splice(index, 1);
 
     this.setState({ ...this.state, cart: cartList, cartCount: this.getCartCount() });
