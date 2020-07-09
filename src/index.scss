@@ -21,7 +21,7 @@ body {
     main {
       height: 100%;
       background: #ffd59a;
-      .main-wrapper {
+      .card-container {
       display: grid;
       grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
       gap: 1rem;
@@ -32,7 +32,7 @@ body {
 
 .card {
   margin: 0 auto;
-  z-index: 0;
+  z-index: 50;
   margin-top: 15px; 
   min-width: 15rem;
 }
@@ -59,5 +59,13 @@ a {
         color: #000;
       }
     }
+  }
+}
+
+@media(min-width: 520px){
+  .card-img-top {
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
   }
 }
