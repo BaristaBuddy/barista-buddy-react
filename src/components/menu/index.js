@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import useFetch from '../../hooks/fetch.js';
-import { useParams, Link, Route } from 'react-router-dom';
+import { useParams, Link, Route, useLocation, useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 // import Modal from '../modal';
-import useOrders from '../../contexts/orders';
+// import useOrders from '../../contexts/orders';
 import ItemDetails from './../itemDetails';
 
 
 export default function Menu(props) {
 
   const { storeId } = useParams();
+  const location = useLocation();
+  const history = useHistory();
   const { request, response } = useFetch();
   const [menu, setMenu] = useState([]);
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items`;
@@ -52,12 +54,14 @@ export default function Menu(props) {
 
   return (
     <>
+      <Route path='/menu/:storeId/:itemId'>
+        <ItemDetails onClose={() => history.push(`/menu/${storeId}`)} />
+      </Route>
       <div className="card-container">
-        <Route path='/menu/:storeId/:itemId'>
-          <ItemDetails />
-        </Route>
         {menu ? menu.map((item) => (
-          <Link to={`/menu/${storeId}/${item.itemId}`}>
+          <Link to={`/menu/${storeId}/${item.itemId}`}
+            style={{ zIndex: 1 }}
+          >
             <Card key={item.itemId}>
               <Card.Img variant="top" src={item.imageUrl} />
               <Card.Body>
@@ -68,7 +72,7 @@ export default function Menu(props) {
                   Ingredients: {item.ingredients}
                 Price: {formatter.format(item.price)}
                 </Card.Text>
-                <Addbutton item={item} />
+                {/* <Addbutton item={item} /> */}
               </Card.Body>
             </Card>
           </Link>
@@ -78,13 +82,13 @@ export default function Menu(props) {
   )
 }
 
-function Addbutton(props) {
+// function Addbutton(props) {
 
-  const { addNew } = useOrders();
+//   const { addNew } = useOrders();
 
-  return (
-    <button onClick={() => addNew(props.item)}>
-      add to cart
-    </button>
-  )
-}
+//   return (
+//     <button onClick={() => addNew(props.item)}>
+//       add to cart
+//     </button>
+//   )
+// }

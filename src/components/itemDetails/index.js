@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/fetch';
-import Modal from 'react-bootstrap/Modal';
+import Modal from './../modal';
 import Button from 'react-bootstrap/Button';
 import './itemDetails.scss';
-
+import useOrders from '../../contexts/orders';
 
 export default function ItemDetails(props) {
   console.log(props);
@@ -12,6 +12,8 @@ export default function ItemDetails(props) {
   const { storeId, itemId } = useParams();
   const { request, response } = useFetch();
   const [itemDetails, setItemDetails] = useState([]);
+  const { onClose } = props;
+
   const BBurl = `https://baristabuddyapi.azurewebsites.net/api/stores/${storeId}/Items/${itemId}`;
 
   const getItem = React.useCallback(() => {
@@ -25,7 +27,7 @@ export default function ItemDetails(props) {
   //useEffect for initial Load, Can add more dependencies as needed.
   useEffect(() => {
     getItem();
-   
+
   }, [getItem]);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export default function ItemDetails(props) {
   // useEffect(() => {
   //   if (response.length > 0) {
   //     console.log(response);
-     
+
 
   //   } else {
   //     getItem();
@@ -48,46 +50,43 @@ export default function ItemDetails(props) {
     minimumFractionDigits: 2
   })
 
+
   return (
     <div className="details-wrapper">
-    <Modal.Dialog
-    {...props}
-    size="lg"
-    aria-labelledby={itemDetails.name}
-    centered
-    >
-      <form >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            Item Details
-        </Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          {/* <img src={itemDetails.imageUrl} alt={itemDetails.name} /> */}
-          <h2>{itemDetails.name}</h2>
-          <p>{itemDetails.ingredients}</p>
-          {/* {itemDetails.itemModifiers.map((itemModifier) => (
+        <Modal title="Item Details" onClose={onClose}>
+          <form >
+            {/* <img src={itemDetails.imageUrl} alt={itemDetails.name} /> */}
+            <h2>{itemDetails.name}</h2>
+            <p>{itemDetails.ingredients}</p>
+            {/* {itemDetails.itemModifiers.map((itemModifier) => (
             <label>
               {itemModifier.modifierName}
               <input type="checkbox" name="Modifier" value={itemModifier.modifierName} />
               {itemModifier.additionalCost}
             </label>
           ))} */}
-          {console.log(itemDetails)}
-          <p>{formatter.format(itemDetails.price)}</p>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button
-            variant="secondary">Close
+            {console.log(itemDetails.itemModifiers)}
+            <p>{formatter.format(itemDetails.price)}</p>
+            <Button
+              variant="secondary"
+              onClick={onClose}
+            >
+              Close
           </Button>
-          <Button variant="primary">
-            Add to Cart
-          </Button>
-        </Modal.Footer>
-      </form>
-    </Modal.Dialog>
+            <Addbutton item={itemDetails} onClick={onClose} />
+          </form>
+        </Modal>
     </div>
+  )
+}
+
+function Addbutton(props) {
+
+  const { addNew } = useOrders();
+
+  return (
+    <button onClick={() => addNew(props.item)}>
+      add to cart
+    </button>
   )
 }

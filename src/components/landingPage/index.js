@@ -1,11 +1,14 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import Modal from './../modal';
 import { If } from './../if/if.js';
 import SignUpForm from './../form';
 import Login from './../auth/login';
 import useFetch from '../../hooks/fetch';
+import './landingPage.scss';
 
-import bbBrown from './../../assets/barista-buddy-brown.png';
+// import bbBrown from './../../assets/barista-buddy-brown.png';
+import bbBrownMobile from './../../assets/bb-brown-mobile.png';
+
 
 export default function LandingPage() {
 
@@ -27,7 +30,7 @@ export default function LandingPage() {
   const toggleModal = () => {
     setToggle(!toggle);
   }
-  
+
   function getFormData(data) {
     // setFormData(data);
     register(data);
@@ -36,15 +39,17 @@ export default function LandingPage() {
 
   return (
     <>
-    <div className="landing-page">
-      <img alt="Barista Buddy Landing Page Logo" src={bbBrown} />
-      <Login />
-      <p onClick={toggleModal}>Need to register? Click here!</p>
-    </div>
+      <div className="landing-page">
+        <div className="login-wrapper">
+          <img alt="Barista Buddy Landing Page Logo" src={bbBrownMobile} />
+          <Login />
+          <p onClick={toggleModal}>Need to register? Click here!</p>
+        </div>
+      </div>
 
       <If condition={toggle}>
         <Modal title="Register" onClose={toggleModal}>
-          <SignUpForm data = {getFormData}/>
+          <SignUpForm data={getFormData} />
         </Modal>
       </If>
     </>

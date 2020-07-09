@@ -41,21 +41,20 @@ export default function Stores() {
       <h2>Our Partner Stores</h2>
       <div className="card-container">
         {storeList != null ? storeList.map((store) => (
-          <Link to={{
-            pathname: `/menu/${store.id}`
-          }}>
-            <Card key={store.id}>
+          <Link to={`/menu/${store.id}`} 
+          style={{zIndex:1}}
+          >
+            <Card key={store.id} >
               <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
               <Card.Body>
                 <Card.Title>
                   {store.name}
                 </Card.Title>
                 <Card.Text>
-                  <p>Street Address: {store.streetAddress}</p>
-                  <p>City, State: {store.city}, {store.state}</p>
-                  <p>Zip Code: {store.zip}</p>
-                  <p>Phone: {store.phone}</p>
-                  <a href={store.websiteUrl}>Go to Their Site!</a>
+                  <p>{store.streetAddress}</p>
+                  <p>{store.city}, {store.state}</p>
+                  <p>{store.phone}</p>
+                  <a href={store.websiteUrl}>Website</a>
                 </Card.Text>
               </Card.Body>
             </Card>
