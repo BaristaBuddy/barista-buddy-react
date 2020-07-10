@@ -63,7 +63,7 @@ export default function Stores() {
                 </Card.Body>
               </Card>
             </Link>
-          )) : <h3>Loading!</h3>}
+          )) : <h2>Loading!</h2>}
         </div>
       </>
     );
@@ -74,8 +74,10 @@ export default function Stores() {
         <div className="card-container">
         {console.log(currentStore)}
           {storeList != null ? storeList.filter((store)=> store.id === currentStore).map((store) => (
+              <>
             <Link to={`/menu/${store.id}`}
               style={{ zIndex: 1 }}
+              className="card-link"
             >
               <Card key={store.id} >
                 <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
@@ -91,9 +93,10 @@ export default function Stores() {
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <ExtraCard/>
             </Link>
-          )) : <h3>Loading!</h3>}
+            <ExtraCard/>
+            </>
+          )) : <h2>Loading!</h2>}
         </div>
       </>
     );

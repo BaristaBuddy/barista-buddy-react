@@ -44,7 +44,7 @@ h2 {
 .card {
   margin: 15px 5px;
   // z-index: 50;
-  min-width: 300px;
+  max-width: 400px;
   color: #000;
   &:hover {
     text-decoration: none;
