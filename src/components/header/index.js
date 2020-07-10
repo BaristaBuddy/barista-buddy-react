@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.scss';
 import Login from "../auth/login";
-import bbBrownMobile from '../../assets/bb-brown-mobile.png';
+import bbBrownMobile from '../../assets/barista-buddy-brown.png';
 
 export default function Header() {
   //const theme = useTheme();
