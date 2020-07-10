@@ -50,10 +50,17 @@ h2 {
     text-decoration: none;
   }
   p {
-    margin: 0.2rem;
+    margin: 0;
+    font-size: 0.75rem;
+    text-align: center;
   }
   h4 {
     text-align: right;
+  }
+  h6 {
+    font-size: 1rem;
+    margin-top: 2rem;
+    text-align: center;
   }
 }
 
