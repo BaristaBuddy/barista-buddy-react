@@ -18,7 +18,7 @@ export class OrdersProvider extends React.Component {
     super(props);
 
     this.state = {
-      orderId: null,
+      orderId: JSON.parse(window.localStorage.getItem('orderId')) || null,
       cart: [],
       currentStore: JSON.parse(window.localStorage.getItem('currentStore')) || null,
       cartCount: 0,
@@ -77,6 +77,7 @@ export class OrdersProvider extends React.Component {
     const response = await fetch(itemUrl, requestItem);
     const responseJSON = await response.json();
     const orderId = responseJSON.id;
+    window.localStorage.setItem("orderId", JSON.stringify(orderId));
     return orderId;
   }
   UpdateItemQuantity = async (item) => {
@@ -108,6 +109,7 @@ export class OrdersProvider extends React.Component {
   Reset = async () =>{
    await this.setState({orderId: null, currentStore: null,  cart: [], cartCount: 0 });
    window.localStorage.removeItem('currentStore');
+   window.localStorage.removeItem('orderId');
   }
 
   addNew = async (item) => {
