@@ -20,7 +20,7 @@ export class OrdersProvider extends React.Component {
     this.state = {
       orderId: null,
       cart: [],
-      currentStore: null,
+      currentStore: JSON.parse(window.localStorage.getItem('currentStore')) || null,
       cartCount: 0,
       apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/',
       user: props.user,
@@ -107,6 +107,7 @@ export class OrdersProvider extends React.Component {
 
   Reset = async () =>{
    await this.setState({orderId: null, currentStore: null,  cart: [], cartCount: 0 });
+   window.localStorage.removeItem('currentStore');
   }
 
   addNew = async (item) => {
@@ -135,7 +136,8 @@ export class OrdersProvider extends React.Component {
       const orderItemId =  await this.CreateItem(item);
       newItem.orderItemId = orderItemId;
       newList.push(newItem);
-      this.setState({ currentStore: item.storeId });
+      window.localStorage.setItem('currentStore', JSON.stringify(item.storeId));
+      await this.setState({ currentStore: item.storeId });
     }
 
     this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
