@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/fetch.js';
 import Card from 'react-bootstrap/Card';
 import useOrders from '../../contexts/orders';
+import ExtraCard from './extraCard'
 
 export default function Stores() {
   //needs to be dontenv
@@ -89,6 +90,7 @@ export default function Stores() {
                   </Card.Text>
                 </Card.Body>
               </Card>
+              <ExtraCard/>
             </Link>
           )) : <h3>Loading!</h3>}
         </div>
