@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import useOrders from '../../contexts/orders';
 import { useHistory } from "react-router-dom";
 import './shoppingCart.scss';
@@ -6,12 +6,17 @@ import './shoppingCart.scss';
 function ShoppingCart() {
 
   const { cart, removeItem, Reset, GetTotalPrice } = useOrders();
+  const [checkedOut, setCheckedOut] = useState(false);
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
     currency: 'USD',
     minimumFractionDigits: 2
   });
   let history = useHistory();
+  function checkout(){
+    setCheckedOut(!checkedOut);
+    Reset();
+  }
 
   const cartlist = cart.map((i, index) => {
     return (
@@ -56,7 +61,7 @@ function ShoppingCart() {
             <Removebutton text="Go Back" func={history.goBack} />
           </div>
           <div className="btn btn-primary">
-            <Removebutton text="Checkout" func={Reset} />
+            <Removebutton text="Checkout" func={checkout} />
           </div>
         </div>
       </div>
@@ -66,7 +71,7 @@ function ShoppingCart() {
     return (
       <>
         <h2>Your Cart</h2>
-        <p className='c p'>cart is empty</p>
+        <p className='c p'>{(checkedOut ? "Thank you For Your Order!" : "Cart is empty")}</p>
         <div className="btn btn-primary">
           <Removebutton className="btn btn-primary" text="Go Back" func={history.goBack} />
         </div>
