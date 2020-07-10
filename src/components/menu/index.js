@@ -69,10 +69,11 @@ export default function Menu(props) {
                   {item.name}
                 </Card.Title>
                 <Card.Text>
-                  Ingredients: {item.ingredients}
-                Price: {formatter.format(item.price)}
+                  {item.ingredients}
                 </Card.Text>
-                {/* <Addbutton item={item} /> */}
+                <Card.Footer>
+                <h4>{formatter.format(item.price)}</h4>
+                </Card.Footer>
               </Card.Body>
             </Card>
           </Link>
