@@ -27,6 +27,10 @@
       input {
         justify-self: flex-end;
       }
+      button {
+        max-width: 10%;
+        align-self: center;
+      }
     }
     p {
       color: #fff;
