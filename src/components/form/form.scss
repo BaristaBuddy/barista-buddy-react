@@ -1,6 +1,10 @@
 .signup-form {
     text-align: center;
+    h1 {
+        font-size: 2rem;
+    }
     label {
+        margin: 0.5rem 0;
         display: flex;
         justify-content: space-between;
     }
