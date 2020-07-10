@@ -21,7 +21,7 @@ export class OrdersProvider extends React.Component {
       orderId: JSON.parse(window.localStorage.getItem('orderId')) || null,
       cart: JSON.parse(window.localStorage.getItem('cart')) || [],
       currentStore: JSON.parse(window.localStorage.getItem('currentStore')) || null,
-      cartCount: JSON.parse(window.localStorage.getItem('cart')).length || 0,
+      cartCount: JSON.parse(window.localStorage.getItem('cart')) ? JSON.parse(window.localStorage.getItem('cart')).length : 0,
       apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/',
       user: props.user,
       //Context Methods
