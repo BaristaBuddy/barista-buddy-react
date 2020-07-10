@@ -16,6 +16,7 @@ header {
   }
   .users {
     border-radius: 20px;
+    padding: 0 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +26,8 @@ header {
     max-width: 40%;
     .login {
       h3{
-        font-size: 0.75rem;
+        font-size: 1.25rem;
+        text-align: center;
       }
     }
     form{

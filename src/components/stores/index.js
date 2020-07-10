@@ -46,6 +46,7 @@ export default function Stores() {
           {storeList != null ? storeList.map((store) => (
             <Link to={`/menu/${store.id}`}
               style={{ zIndex: 1 }}
+              className="card-link"
             >
               <Card key={store.id} >
                 <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
@@ -54,15 +55,16 @@ export default function Stores() {
                     {store.name}
                   </Card.Title>
                   <Card.Text>
-                    <p>{store.streetAddress}</p>
+                    {/* <p>{store.streetAddress}</p> */}
                     <p>{store.city}, {store.state}</p>
                     <p>{store.phone}</p>
-                    <a href={store.websiteUrl}>Website</a>
+                    <h6>Click to view menu!</h6>
+                    {/* <a href={store.websiteUrl}>Website</a> */}
                   </Card.Text>
                 </Card.Body>
               </Card>
             </Link>
-          )) : <h3>Loading!</h3>}
+          )) : <h2>Loading!</h2>}
         </div>
       </>
     );
@@ -73,8 +75,10 @@ export default function Stores() {
         <div className="card-container">
         {console.log(currentStore)}
           {storeList != null ? storeList.filter((store)=> store.id === currentStore).map((store) => (
+              <>
             <Link to={`/menu/${store.id}`}
               style={{ zIndex: 1 }}
+              className="card-link"
             >
               <Card key={store.id} >
                 <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
@@ -86,13 +90,15 @@ export default function Stores() {
                     <p>{store.streetAddress}</p>
                     <p>{store.city}, {store.state}</p>
                     <p>{store.phone}</p>
-                    <a href={store.websiteUrl}>Website</a>
+                    <h6>Click to view menu!</h6>
+                    {/* <a href={store.websiteUrl}>Website</a> */}
                   </Card.Text>
                 </Card.Body>
               </Card>
-              <ExtraCard/>
             </Link>
-          )) : <h3>Loading!</h3>}
+            <ExtraCard/>
+            </>
+          )) : <h2>Loading!</h2>}
         </div>
       </>
     );

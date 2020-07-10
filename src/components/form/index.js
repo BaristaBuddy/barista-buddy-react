@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+import './form.scss';
 
 export default class SignUpForm extends React.Component {
   constructor(props) {
@@ -34,7 +36,7 @@ export default class SignUpForm extends React.Component {
   }
   render() {
     return (
-      <form onSubmit={this.submitHandler}>
+      <form className="signup-form" onSubmit={this.submitHandler}>
       <h1>Sign up for Barista Buddy!</h1>
       <label>First name
       <input
@@ -78,9 +80,9 @@ export default class SignUpForm extends React.Component {
         onChange={this.changeHandler}
       />
       </label>
-      <button type='submit'>
+      <Button type='submit'>
       Register!
-      </button>
+      </Button>
       </form>
     );
   }
