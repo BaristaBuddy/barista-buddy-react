@@ -26,19 +26,25 @@ body {
       .card-container {
       display: grid;
       grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
-      gap: 1rem;
-      grid-gap: 1rem;
+      gap: .5rem;
+      grid-gap: .5rem;
       }
     }
   }
 }
 
-.card {
-  margin: 0 auto;
-  // z-index: 50;
-  margin: 15px 5px;
-  min-width: 300px;
+h2 {
+  font-size: 2rem;
+}
+
+.card-link {
   text-decoration: none;
+  margin: 0 auto;
+}
+.card {
+  margin: 15px 5px;
+  // z-index: 50;
+  min-width: 300px;
   color: #000;
   &:hover {
     text-decoration: none;

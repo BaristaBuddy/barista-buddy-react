@@ -60,6 +60,7 @@ export default function Menu(props) {
         {menu ? menu.map((item) => (
           <Link to={`/menu/${storeId}/${item.itemId}`}
             style={{ zIndex: 1 }}
+            className="card-link"
           >
             <Card key={item.itemId}>
               <Card.Img variant="top" src={item.imageUrl} />
