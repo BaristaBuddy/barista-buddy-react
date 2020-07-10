@@ -25,6 +25,7 @@ export default function LandingPage() {
       options: { method: "post", body: JSON.stringify(data) }
     }
     request(requestBody);
+    
   }, [request]);
 
   const toggleModal = () => {

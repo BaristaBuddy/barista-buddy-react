@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import cookie from 'react-cookies';
 
 // TODO: Input Users API url below
-const usersAPI = 'https://baristabuddyapi.azurewebsites.net/api/Users/';
+const usersAPI = 'https://baristabuddyapi.azurewebsites.net/api/Users';
 
 export const AuthContext = React.createContext();
 
