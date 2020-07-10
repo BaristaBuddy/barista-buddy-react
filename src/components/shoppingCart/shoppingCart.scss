@@ -1,0 +1,45 @@
+.btn {
+    margin: .25rem;
+}
+button {
+    color: #fff;
+    background-color: #007bff;
+    border: 1px solid transparent;
+    display: inline-block;
+    // font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    transition: inherit;
+    // &:hover {
+    //     box-shadow: inset 0 0 0 20rem inherit;
+    // }
+    // user-select: none;
+    // transition: color 0.15s ease-in-out,
+    //             background-color 0.15s ease-in-out,
+    //             border-color 0.15s ease-in-out,
+    //             box-shadow 0.15s ease-in-out;
+}
+
+.c {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.p {
+    font-size: 2rem !important;
+    text-align: center;
+}
+
+th {
+    padding: 1rem;
+    font-weight: bold;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.checkout-wrapper {
+    margin: 3rem;
+}
