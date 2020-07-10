@@ -54,7 +54,7 @@ export default function Stores() {
                     {store.name}
                   </Card.Title>
                   <Card.Text>
-                    <p>{store.streetAddress}</p>
+                    {/* <p>{store.streetAddress}</p> */}
                     <p>{store.city}, {store.state}</p>
                     <p>{store.phone}</p>
                     <a href={store.websiteUrl}>Website</a>
