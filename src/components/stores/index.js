@@ -58,7 +58,8 @@ export default function Stores() {
                     {/* <p>{store.streetAddress}</p> */}
                     <p>{store.city}, {store.state}</p>
                     <p>{store.phone}</p>
-                    <a href={store.websiteUrl}>Website</a>
+                    <h6>Click to view menu!</h6>
+                    {/* <a href={store.websiteUrl}>Website</a> */}
                   </Card.Text>
                 </Card.Body>
               </Card>
@@ -89,7 +90,8 @@ export default function Stores() {
                     <p>{store.streetAddress}</p>
                     <p>{store.city}, {store.state}</p>
                     <p>{store.phone}</p>
-                    <a href={store.websiteUrl}>Website</a>
+                    <h6>Click to view menu!</h6>
+                    {/* <a href={store.websiteUrl}>Website</a> */}
                   </Card.Text>
                 </Card.Body>
               </Card>
