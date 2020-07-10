@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/fetch.js';
 import Card from 'react-bootstrap/Card';
+import useOrders from '../../contexts/orders';
+import ExtraCard from './extraCard'
 
 export default function Stores() {
   //needs to be dontenv
@@ -9,6 +11,7 @@ export default function Stores() {
   const BBurl = 'https://baristabuddyapi.azurewebsites.net/api/stores'
   const [storeList, setStoreList] = useState();
   const { request, response } = useFetch();
+  const { currentStore } = useOrders();
 
 
 
@@ -35,33 +38,64 @@ export default function Stores() {
       getStores();
     }
   }, [response, getStores, setStoreList]);
-
-  return (
-    <>
-      <h2>Our Partner Stores</h2>
-      <div className="card-container">
-        {storeList != null ? storeList.map((store) => (
-          <Link to={`/menu/${store.id}`} 
-          style={{zIndex:1}}
-          >
-            <Card key={store.id} >
-              <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
-              <Card.Body>
-                <Card.Title>
-                  {store.name}
-                </Card.Title>
-                <Card.Text>
-                  <p>{store.streetAddress}</p>
-                  <p>{store.city}, {store.state}</p>
-                  <p>{store.phone}</p>
-                  <a href={store.websiteUrl}>Website</a>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Link>
-        )) : <h3>Loading!</h3>}
-      </div>
-    </>
-  );
+  if (currentStore === null) {
+    return (
+      <>
+        <h2>Our Partner Stores</h2>
+        <div className="card-container">
+          {storeList != null ? storeList.map((store) => (
+            <Link to={`/menu/${store.id}`}
+              style={{ zIndex: 1 }}
+            >
+              <Card key={store.id} >
+                <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
+                <Card.Body>
+                  <Card.Title>
+                    {store.name}
+                  </Card.Title>
+                  <Card.Text>
+                    <p>{store.streetAddress}</p>
+                    <p>{store.city}, {store.state}</p>
+                    <p>{store.phone}</p>
+                    <a href={store.websiteUrl}>Website</a>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Link>
+          )) : <h3>Loading!</h3>}
+        </div>
+      </>
+    );
+  } else if(currentStore !== null) {
+    return (
+      <>
+        <h2>Our Partner Stores</h2>
+        <div className="card-container">
+        {console.log(currentStore)}
+          {storeList != null ? storeList.filter((store)=> store.id === currentStore).map((store) => (
+            <Link to={`/menu/${store.id}`}
+              style={{ zIndex: 1 }}
+            >
+              <Card key={store.id} >
+                <Card.Img variant="top" src={store.storeImageUrl} alt={store.name} />
+                <Card.Body>
+                  <Card.Title>
+                    {store.name}
+                  </Card.Title>
+                  <Card.Text>
+                    <p>{store.streetAddress}</p>
+                    <p>{store.city}, {store.state}</p>
+                    <p>{store.phone}</p>
+                    <a href={store.websiteUrl}>Website</a>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+              <ExtraCard/>
+            </Link>
+          )) : <h3>Loading!</h3>}
+        </div>
+      </>
+    );
+  }
 
 }
