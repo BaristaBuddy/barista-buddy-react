@@ -108,7 +108,9 @@ export class OrdersProvider extends React.Component {
 
   Reset = async () =>{
    await this.setState({orderId: null, currentStore: null,  cart: [], cartCount: 0 });
-   window.localStorage.clear();
+   window.localStorage.removeItem('cart');
+   window.localStorage.removeItem('currentStore');
+   window.localStorage.removeItem('orderId');
   }
 
   addNew = async (item) => {

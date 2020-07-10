@@ -31,7 +31,7 @@ const Login = () => {
     if (user) {
         return (
             <div className="login">
-                <h3>Welcome back, {user.username.split(" ")[0]}!</h3>
+                <h3>Welcome back, {user.username ? user.username.match(/^\S*\b/gm) : "Friend"}!</h3>
                 <form onSubmit={logoutSubmit}>
                     <Button type="submit" >Log Out</Button>
                     <Button onClick={()=>history.push("/stores")} >Check Out Our Stores!</Button>

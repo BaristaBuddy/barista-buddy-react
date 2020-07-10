@@ -16,9 +16,9 @@ export class AuthProvider extends React.Component {
         super(props);
 
         this.state = {
-            user: null,
+            user: JSON.parse(window.localStorage.getItem('orderId')) || null,
             permissions: [],
-
+            token: JSON.parse(window.localStorage.getItem('token')) || null,
             login: this.login,
             logout: this.logout,
         };
@@ -50,6 +50,8 @@ export class AuthProvider extends React.Component {
     logout = () => {
         this.setState({token: null, user: null, permissions: [] });
         cookie.remove('auth', {path: "/"});
+        window.localStorage.removeItem("user");
+        window.localStorage.removeItem("token");
     }
 
     processToken(token, user) {
@@ -68,6 +70,8 @@ export class AuthProvider extends React.Component {
             username: payload.FullName
                     };
                 }
+                window.localStorage.setItem("user", JSON.stringify(user));
+                window.localStorage.setItem("token", JSON.stringify(token));
                 console.log(user);
                 this.setState({
                     token,
