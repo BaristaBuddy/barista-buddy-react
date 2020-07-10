@@ -19,9 +19,9 @@ export class OrdersProvider extends React.Component {
 
     this.state = {
       orderId: JSON.parse(window.localStorage.getItem('orderId')) || null,
-      cart: [],
+      cart: JSON.parse(window.localStorage.getItem('cart')) || [],
       currentStore: JSON.parse(window.localStorage.getItem('currentStore')) || null,
-      cartCount: 0,
+      cartCount: JSON.parse(window.localStorage.getItem('cart')).length || 0,
       apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/',
       user: props.user,
       //Context Methods
@@ -108,12 +108,12 @@ export class OrdersProvider extends React.Component {
 
   Reset = async () =>{
    await this.setState({orderId: null, currentStore: null,  cart: [], cartCount: 0 });
-   window.localStorage.removeItem('currentStore');
-   window.localStorage.removeItem('orderId');
+   window.localStorage.clear();
   }
 
   addNew = async (item) => {
     if (this.state.cart == null || this.state.cart.length <= 0) {
+      window.localStorage.setItem("cart", JSON.stringify([]));
       await this.state.CreateOrder(item.storeId)
     };
     let newList = this.state.cart;
@@ -132,12 +132,14 @@ export class OrdersProvider extends React.Component {
     if (filtered.length > 0) {
       const pos = newList.map(i => { return i.id; }).indexOf(item.itemId);
       newList[pos].count += 1;
+      window.localStorage.setItem("cart", JSON.stringify(this.state.cart));
       const message = await this.state.UpdateItemQuantity(newList[pos]);
       console.log(message);
     } else {
       const orderItemId =  await this.CreateItem(item);
       newItem.orderItemId = orderItemId;
       newList.push(newItem);
+      window.localStorage.setItem("cart", JSON.stringify(newList));
       window.localStorage.setItem('currentStore', JSON.stringify(item.storeId));
       await this.setState({ currentStore: item.storeId });
     }
