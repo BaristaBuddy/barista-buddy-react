@@ -21,7 +21,7 @@ export class OrdersProvider extends React.Component {
       orderId: JSON.parse(window.localStorage.getItem('orderId')) || null,
       cart: JSON.parse(window.localStorage.getItem('cart')) || [],
       currentStore: JSON.parse(window.localStorage.getItem('currentStore')) || null,
-      cartCount: JSON.parse(window.localStorage.getItem('cart')) ? JSON.parse(window.localStorage.getItem('cart')).length : 0,
+      cartCount: JSON.parse(window.localStorage.getItem('count')) || 0,
       apiUrl: 'https://baristabuddyapi.azurewebsites.net/api/',
       user: props.user,
       //Context Methods
@@ -34,7 +34,8 @@ export class OrdersProvider extends React.Component {
       UpdateItemQuantity: this.UpdateItemQuantity,
       GetTotalPrice: this.GetTotalPrice,
       DeleteItem: this.DeleteItem,
-      
+      getCartCount: this.getCartCount,
+
     };
   }
 
@@ -98,7 +99,7 @@ export class OrdersProvider extends React.Component {
     return (response ? "Item Updated" : "Update Failed");
   }
 
-  DeleteItem = async (item) =>{
+  DeleteItem = async (item) => {
     console.log("Deleting item!");
     const deleteUrl = `${this.state.apiUrl}order/item/${parseInt(item.orderItemId)}`;
     const response = await fetch(deleteUrl);
@@ -106,11 +107,12 @@ export class OrdersProvider extends React.Component {
     return (responseJSON.id !== null ? "Item Deleted!" : "Delete Failed!");
   }
 
-  Reset = async () =>{
-   await this.setState({orderId: null, currentStore: null,  cart: [], cartCount: 0 });
-   window.localStorage.removeItem('cart');
-   window.localStorage.removeItem('currentStore');
-   window.localStorage.removeItem('orderId');
+  Reset = async () => {
+    await this.setState({ orderId: null, currentStore: null, cart: [], cartCount: 0 });
+    window.localStorage.removeItem('cart');
+    window.localStorage.removeItem('currentStore');
+    window.localStorage.removeItem('orderId');
+    window.localStorage.removeItem('count');
   }
 
   addNew = async (item) => {
@@ -134,19 +136,22 @@ export class OrdersProvider extends React.Component {
     if (filtered.length > 0) {
       const pos = newList.map(i => { return i.id; }).indexOf(item.itemId);
       newList[pos].count += 1;
-      window.localStorage.setItem("cart", JSON.stringify(this.state.cart));
       const message = await this.state.UpdateItemQuantity(newList[pos]);
+      window.localStorage.setItem("cart", JSON.stringify(this.state.cart));
+      
       console.log(message);
     } else {
-      const orderItemId =  await this.CreateItem(item);
+      const orderItemId = await this.CreateItem(item);
       newItem.orderItemId = orderItemId;
-      newList.push(newItem);
+      await newList.push(newItem);
+      await this.setState({ currentStore: item.storeId });
       window.localStorage.setItem("cart", JSON.stringify(newList));
       window.localStorage.setItem('currentStore', JSON.stringify(item.storeId));
-      await this.setState({ currentStore: item.storeId });
+      
     }
-
-    this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
+    
+    await this.setState({ ...this.state, cart: newList, cartCount: this.getCartCount() });
+    window.localStorage.setItem("count", this.state.cartCount);
   }
 
   removeItem = async (index) => {
@@ -154,32 +159,34 @@ export class OrdersProvider extends React.Component {
     const item = this.state.cart[index];
     const message = await this.state.DeleteItem(item);
     console.log(message);
-    if(cartList[index].count === 1){
-    cartList.splice(index, 1);
+    if (cartList[index].count === 1) {
+      cartList.splice(index, 1);
     } else {
-      cartList[index].count--; 
+      cartList[index].count--;
     }
 
-    if(cartList.length === 0) {
-     await  this.state.Reset();
+    if (cartList.length === 0) {
+      await this.state.Reset();
       console.log("Removing Order!");
     } else {
       await this.setState({ ...this.state, cart: cartList, cartCount: this.getCartCount() });
+      window.localStorage.setItem("cart", JSON.stringify(cartList));
+      window.localStorage.setItem("count", this.state.cartCount);
     }
   }
 
-  getCartCount = () => {
+  getCartCount =() => {
     let count = 0;
-
     if (this.state.cart.length > 0) {
 
       this.state.cart.forEach(item => {
         count += parseInt(item.count);
       });
     }
-
     return count;
   }
+
+
   GetTotalPrice = () => {
     let sum = 0;
     this.state.cart.forEach(item => {
