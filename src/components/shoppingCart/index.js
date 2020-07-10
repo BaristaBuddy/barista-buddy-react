@@ -44,6 +44,7 @@ function ShoppingCart() {
         <Removebutton text="Delete Order" func={Reset} />
         <h3>Total Price: {formatter.format(GetTotalPrice())}</h3>
         <Removebutton text="Go Back" func={history.goBack} />
+        <Removebutton text="Checkout" func={Reset} />
       </div>
     )
 
