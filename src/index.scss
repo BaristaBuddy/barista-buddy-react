@@ -61,8 +61,27 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
+    .cart-count {
+      background: #000;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      width: 1.5rem;
+      height: 1.5rem;
+      align-self: flex-end;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+       h3 {
+         font-size: 1rem;
+         color: #fff;
+         margin: 0;
+      }
+    }
+   
     svg {
       font-size: 2rem;
+      margin-left: -0.75rem;
       color: #fff;
       &:hover {
         color: #000;

@@ -21,9 +21,11 @@ function App() {
     <>
       <Header />
       <Link to="/cart">
-        <div testId="cart" className="cart-tab">
+        <div className="cart-tab">
+          <div className="cart-count">
+          <h3>{cartCount}</h3>
+          </div>
           <FontAwesomeIcon icon={faShoppingCart} />
-          <h3 style={{color: "black"}}>{cartCount}</h3>
         </div>
       </Link>
       <main>
